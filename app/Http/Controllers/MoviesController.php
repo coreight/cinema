@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Movies;
+
 
 /**
- * Class ActorsController
+ * Class MoviesController
  * @package App\Http\Controllers
  */
 class MoviesController extends Controller
@@ -19,8 +21,13 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        return view('Movies/index');
-    }
+        $datas = [
+            'movies' => Movies::all()
+        ];
+
+
+
+        return view('Movies/index', $datas);    }
 
     /**
      * @return \Illuminate\View\View
@@ -57,5 +64,10 @@ class MoviesController extends Controller
     {
         return redirect('/movies', ['id' => $id]);
 
+    }
+
+    public function search($lang = "fr", $visibility = 1, $length = 2)
+    {
+        return view('Movies/search', ['lang' => $lang, 'visibility' => $visibility, 'length' => $length]);
     }
 }

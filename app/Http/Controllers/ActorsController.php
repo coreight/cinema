@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Actors;
+
 
 /**
  * Class ActorsController
@@ -20,18 +22,7 @@ class ActorsController extends Controller
     public function index()
     {
         $datas = [
-            'acteurs' => [
-                ["lastname" => "Brando", "firstname" => "Marlon", "age" => 70],
-                ["lastname" => "De Niro", "firstname" => "Robert", "age" => 60],
-                ["lastname" => "Pacino", "firstname" => "Al", "age" => 55]
-            ],
-            'title' => "Liste des acteurs",
-            'firstnames' => ["Marlon", "Robert", "Al", "John", "Bruce", "Samuel"],
-            'ages' => [70, 60, 55, 45, 45, 42],
-            'villes' =>
-                ['newYork' =>  ["Marlon", "Robert", "Al"],
-                'vegas' => ["John", "Bruce", "Samuel"]]
-
+            'actors' => Actors::all()
         ];
 
 

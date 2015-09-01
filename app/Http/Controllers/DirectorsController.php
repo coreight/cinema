@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Directors;
 
 /**
  * Class DirectorsController
@@ -17,7 +18,11 @@ class DirectorsController extends Controller
 
     public function index()
     {
-        return view('Actors/index');
+        $datas = [
+            'directors' => Directors::all()
+        ];
+
+        return view('Directors/index', $datas);
     }
 
     /**
@@ -25,7 +30,7 @@ class DirectorsController extends Controller
      */
     public function create()
     {
-        return view('Actors/create');
+        return view('Directors/create');
     }
 
     /**
@@ -34,7 +39,7 @@ class DirectorsController extends Controller
     public function read($id)
     {
         echo $id;
-        return view('Actors/read', ['id' => $id]);
+        return view('Directors/read', ['id' => $id]);
 
     }
 
@@ -43,7 +48,7 @@ class DirectorsController extends Controller
      */
     public function update($id)
     {
-        return view('Actors/update', ['id' => $id]);
+        return view('Directors/update', ['id' => $id]);
 
     }
 
