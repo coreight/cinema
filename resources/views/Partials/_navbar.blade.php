@@ -12,7 +12,7 @@
 
         <!-- Logo -->
     <a href="/" class="navbar-brand">
-    <div><img alt="Pixel Admin" src="images/pixel-admin/main-navbar-logo.png"></div>
+    <div><img alt="Pixel Admin" src="/images/pixel-admin/main-navbar-logo.png"></div>
     CineApp
     </a>
 

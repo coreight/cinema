@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Movies;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 /**
@@ -42,7 +44,10 @@ class MoviesController extends Controller
      */
     public function read($id)
     {
-        return view('Movies/read', ['id' => $id]);
+        $datas = [
+          'movies' => Movies::find($id)
+        ];
+        return view('Movies/read', $datas);
 
     }
 
@@ -51,6 +56,7 @@ class MoviesController extends Controller
      */
     public function update($id)
     {
+
         return view('Movies/update', ['id' => $id]);
 
     }
@@ -62,7 +68,10 @@ class MoviesController extends Controller
      */
     public function delete($id)
     {
-        return redirect('/movies', ['id' => $id]);
+        $movie = Movies::find($id);
+        $movie->delete();
+        Session::flash('success', "Le film {$movie->title} a bien été supprimé");
+        return Redirect::route('movies.index');
 
     }
 

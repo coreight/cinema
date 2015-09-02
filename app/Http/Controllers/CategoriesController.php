@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Categories;
 
 /**
  * Class CategoriesController
@@ -19,7 +20,11 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('Categories/index');
+        $datas = [
+            'categories' => Categories::all()
+        ];
+
+        return view('Categories/index', $datas);
     }
 
     /**

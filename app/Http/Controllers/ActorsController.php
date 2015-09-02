@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Actors;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 /**
@@ -25,8 +27,6 @@ class ActorsController extends Controller
             'actors' => Actors::all()
         ];
 
-
-
         return view('Actors/index', $datas);
     }
 
@@ -43,7 +43,11 @@ class ActorsController extends Controller
      */
     public function read($id)
     {
-        return view('Actors/read', ['id' => $id]);
+        $datas = [
+            'actors' => Actors::find($id)
+        ];
+
+        return view('Actors/read', $datas);
 
     }
 
@@ -63,7 +67,9 @@ class ActorsController extends Controller
      */
     public function delete($id)
     {
-        return redirect('/actors', ['id' => $id]);
-
+        $actor = Actors::find($id);
+        $actor->delete();
+        Session::flash('success', "L'acteur {$actor->firstname} {$actor->lastname} a bien été supprimé");
+        return Redirect::route('actors.index');
     }
 }

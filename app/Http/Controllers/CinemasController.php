@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Cinemas;
 
 /**
  * Class CinemasController
@@ -19,8 +20,11 @@ class CinemasController extends Controller
      */
     public function index()
     {
-        return view('Cinemas/index');
-    }
+        $datas = [
+            'cinemas' => Cinemas::all()
+        ];
+
+        return view('Cinemas/index', $datas);       }
 
     /**
      * @return \Illuminate\View\View

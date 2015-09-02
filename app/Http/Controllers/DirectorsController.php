@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Directors;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * Class DirectorsController
@@ -38,8 +40,11 @@ class DirectorsController extends Controller
      */
     public function read($id)
     {
-        echo $id;
-        return view('Directors/read', ['id' => $id]);
+        $datas = [
+            'directors' => Directors::find($id)
+        ];
+
+        return view('Directors/read', $datas);
 
     }
 
@@ -59,8 +64,10 @@ class DirectorsController extends Controller
      */
     public function delete($id)
     {
-        return redirect('/directors', ['id' => $id]);
-
+        $director = Directors::find($id);
+        $director->delete();
+        Session::flash('success', "Le réalisateur {$director->firstname} {$director->lastname} a bien été supprimé");
+        return Redirect::route('directors.index');
     }
 
 }

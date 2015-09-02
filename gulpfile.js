@@ -14,18 +14,17 @@ var elixir = require('laravel-elixir');
 
 
 elixir(function(mix) {
+
+
     mix.styles([
-        'bootstrap.min.css',
-        'pages.min.css',
-        'pixel-admin.min.css',
-        'rtl.min.css',
-        'themes.min.css',
-        'widgets.min.css',
         'style.css'
-    ], 'public/css');
+    ]).stylesIn('public/css');
+
+
+    mix.sass('*.sass', 'public/css/app.css');
+
+
     mix.scripts([
-        'bootstrap.min.js',
-        'pixel-admin.min.js'
+        '*.js'
     ], 'public/js');
-    /*mix.sass('app.scss');*/
 });

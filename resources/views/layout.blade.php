@@ -40,6 +40,7 @@ Use search to find needed section.
     @section('css')
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/css/all.css" type="text/css">
+        <link rel="stylesheet" href="/css/app.css" type="text/css">
     @show <!-- permet d'ajouter des css spécifique sur certaines vues -->
     <!-- on ne ferme pas la section -->
 
@@ -69,7 +70,7 @@ Use search to find needed section.
 <div id="main-wrapper">
 
 
-@include('Partials/navbar')
+@include('Partials._navbar')
 
 
     <!-- 4. $MAIN_MENU =================================================================================
@@ -100,7 +101,7 @@ Use search to find needed section.
             <div class="menu-content top" id="menu-content-demo">
 
             </div>
-            @include('Partials/navigation')
+            @include('Partials._navigation')
 
 
         </div> <!-- / #main-menu-inner -->
@@ -112,13 +113,16 @@ Use search to find needed section.
             @yield('header')
         </div>
 
+        {{-- Emplacement des alertes --}}
+        @include('Partials/_flashDatas')
+
         {{--Contenu principal de la page--}}
         @yield('content')
 
     </div> <!-- / #content-wrapper -->
 
     {{-- Footer--}}
-    @include('Partials/footer')
+    @include('Partials._footer')
 
     <div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->

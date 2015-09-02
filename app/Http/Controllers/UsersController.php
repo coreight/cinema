@@ -19,8 +19,13 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('Users/index');
-    }
+        $datas = [
+            'users' => Users::all()
+        ];
+
+
+
+        return view('Users/index', $datas);    }
 
     /**
      * @return \Illuminate\View\View

@@ -1,2 +1,40 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #444;
+  color: #FFF; }
+  footer ul, footer p {
+    margin-bottom: 0; }
+  footer li {
+    display: inline-block;
+    padding: 0 20px; }
+  footer a {
+    color: #FFF; }
+  footer a:hover {
+    color: #FFF;
+    text-decoration: underline; }
+
+.profil-picture {
+  max-width: 40%;
+  float: left;
+  margin: 0 30px 30px 0; }
+
+.btn-ajout {
+  float: right;
+  margin-bottom: 30px; }
+
+.table td:last-child {
+  max-width: 50px; }
+
+.table img {
+  max-width: 50px; }
+
+.table .btn-actions {
+  margin-right: 10px; }
+
+.table .btn-actions:first-child {
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=app.css.map */
