@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('/contact', ['uses' => 'PagesController@contact', 'as' => 'contact']);
 Route::get('/mentions', ['uses' => 'PagesController@mentions', 'as' => 'mentions']);
 Route::get('/faq', ['uses' => 'PagesController@faq', 'as' => 'faq']);
+Route::any('/search', ['uses' => 'PagesController@search', 'as' => 'search']);
 
 
 # ACTORS
@@ -45,12 +46,12 @@ Route::group(['prefix' => 'directors'], function() {
 
 # MOVIES
 Route::group(['prefix' => 'movies'], function() {
-    Route::get('/index', ['uses' => 'MoviesController@index',
+    Route::any('/index', ['uses' => 'MoviesController@index',
         'as' => 'movies.index']);
     Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
     Route::get('{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read']) -> where ('id', '[0-9]+');
-    Route::get('{id}/update', ['uses' => 'MoviesController@update']) -> where ('id', '[0-9]+');
-    Route::get('{id}/delete', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete']) -> where ('id', '[0-9]+');
+    Route::get('{id}/{field?}/{value?}/update', ['uses' => 'MoviesController@update', 'as' => 'movies.update']) -> where ('id', '[0-9]+');
+    Route::any('{id?}/delete', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete'])-> where ('id', '[0-9]+');
     Route::get('search/{lang?}/{visibility?}/{length?}', ['uses' => 'MoviesController@search',
         'as' => 'movies.search'])
         -> where (['lang' => 'fr|en|es', 'visibility' => '[0-1]', 'length' => '[1-9]{1,2}' ]);

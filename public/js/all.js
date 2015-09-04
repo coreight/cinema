@@ -1,74 +1,65 @@
+
 init.push(function () {
 
     /* Tableaux */
+
     $('#jq-datatables-example').dataTable();
     $('#jq-datatables-example_wrapper .table-caption').text('Liste complète');
     $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Recherche...');
 
-    /* Confirmations par modal box */
-    init.push(function () {
-        $('#ui-bootbox-alert').on('click', function () {
-            bootbox.alert({
-                message: "Hello world!",
-                callback: function() {
-                    alert("Hello world callback");
-                },
-                className: "bootbox-sm"
-            });
+
+    /* Checkbox avec enregistrement live (ajax) et confirmation */
+
+    $('#visible :checkbox').on('click', function() {
+
+        var id = $(this).parents('td').attr('data-id');
+
+        if ($(this).is(':checked')) {
+            var checked = false;
+            var toggle = 1;
+        } else {
+            var checked = true;
+            var toggle = 0;
+        }
+
+        // On annule l'action par défaut du bouton
+        /*e.preventDefault();*/
+
+        // On enregistre la valeur
+        $.ajax({
+            type: "GET",
+            url: '/movies/' + id + '/visible/' + toggle + '/update',
+            async: true,
+
+            success: function () {
+                $(this).prop("checked", checked);
+                /* Message de confirmations flottants */
+                $.growl.notice({title: "Information :", message: "La visibilité du film a bien été modifiée"});
+
+            }
         });
-        $('#ui-bootbox-confirm').on('click', function () {
-            bootbox.confirm({
-                message: "Are you sure?",
-                callback: function(result) {
-                    alert("Confirm result: " + result);
-                },
-                className: "bootbox-sm"
-            });
-        });
-        $('#ui-bootbox-prompt').on('click', function () {
-            bootbox.prompt({
-                title: "What is your name?",
-                callback: function(result) {
-                    if (result === null) {
-                        alert("Prompt dismissed");
-                    } else {
-                        alert("Hi " + result + "!");
-                    }
-                },
-                className: "bootbox-sm"
-            });
-        });
-        $('#ui-bootbox-custom').on('click', function () {
-            bootbox.dialog({
-                message: "I am a custom dialog",
-                title: "Custom title",
-                buttons: {
-                    success: {
-                        label: "Success!",
-                        className: "btn-success",
-                        callback: function() {
-                            alert("great success");
-                        }
-                    },
-                    danger: {
-                        label: "Danger!",
-                        className: "btn-danger",
-                        callback: function() {
-                            alert("uh oh, look out!");
-                        }
-                    },
-                    main: {
-                        label: "Click ME!",
-                        className: "btn-primary",
-                        callback: function() {
-                            alert("Primary button");
-                        }
-                    }
-                },
-                className: "bootbox-sm"
-            });
+
+
+    });
+
+    /* Boutons désactivés */
+    $('#radio-group').children().change(function() {
+             $('#bo').toggleClass("hide");
+
+    });
+
+    /* Boutons des modal box lorsque plusieurs éléments sélectionnés */
+
+
+    $('#tableau-submit').on('click', function() {
+
+        $('#id :checkbox').each(function() {
+           console.log($(this).attr('value'));
         });
     });
+
+
+
 
 });
 

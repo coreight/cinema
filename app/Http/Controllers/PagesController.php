@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 /**
  * Class PagesController
  * @package App\Http\Controllers
@@ -33,6 +34,21 @@ class PagesController extends Controller
     {
         return view('Pages/faq');
 
+    }
+
+    public function search(Request $request)
+    {
+        $title = $request->input('title');
+        dump($title);
+        $lang = $request->input('lang');
+        dump($lang);
+        $test = $request->input('test');
+        dump($test);
+
+
+
+
+        return view('Pages/search');
     }
 
 }

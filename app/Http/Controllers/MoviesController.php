@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Movies;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 
 /**
@@ -21,15 +22,35 @@ class MoviesController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        // Récupèration des valeurs du formulaire
+        $boAll = $request->input('boAll');
+        $visible = $request->input('visibility');
+
+        if ($boAll['0'] == "tous") {
+            $bo = "";
+        } else {
+            $bo = $request->input('bo');
+        }
+
+        // Utilisation de la méthode de recherche de la classe Movies
         $datas = [
-            'movies' => Movies::all()
+            'movies' => Movies::dbSearch($bo, $visible)
         ];
 
+        $datas['nbTotal'] = Movies::nbTotal();
+        $datas['enAvant'] = Movies::enAvant();
+        $datas['aVenir'] = Movies::aVenir();
+        $datas['invisible'] = Movies::invisible();
+        $datas['budgetTotal'] = Movies::budgetTotal();
 
+        // Envoi du tableau à la vue
+        return view('Movies/index', $datas);
 
-        return view('Movies/index', $datas);    }
+    }
+
 
     /**
      * @return \Illuminate\View\View
@@ -54,11 +75,12 @@ class MoviesController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function update($id)
+    public function update($id, $field, $value)
     {
-
-        return view('Movies/update', ['id' => $id]);
-
+        $movie = Movies::find($id);
+        $movie->update([$field => $value]);
+        Session::flash('success', "Le film {$movie->title} a bien été mis à jour");
+        return Redirect::route('movies.index');
     }
 
     /**
@@ -68,8 +90,13 @@ class MoviesController extends Controller
      */
     public function delete($id)
     {
-        $movie = Movies::find($id);
-        $movie->delete();
+        if(is_array($id)){
+
+        } else {
+
+            $movie = Movies::find($id);
+            $movie->delete();
+        }
         Session::flash('success', "Le film {$movie->title} a bien été supprimé");
         return Redirect::route('movies.index');
 
