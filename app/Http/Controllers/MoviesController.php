@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Categories;
 use App\Model\Movies;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use App\Http\Requests\MoviesRequest;
 
 
 /**
@@ -34,17 +36,18 @@ class MoviesController extends Controller
         } else {
             $bo = $request->input('bo');
         }
+        $movies = new Movies();
 
         // Utilisation de la méthode de recherche de la classe Movies
         $datas = [
-            'movies' => Movies::dbSearch($bo, $visible)
+            'movies' => $movies->dbSearch($bo, $visible)
         ];
 
-        $datas['nbTotal'] = Movies::nbTotal();
-        $datas['enAvant'] = Movies::enAvant();
-        $datas['aVenir'] = Movies::aVenir();
-        $datas['invisible'] = Movies::invisible();
-        $datas['budgetTotal'] = Movies::budgetTotal();
+        $datas['nbTotal'] = $movies->nbTotal();
+        $datas['enAvant'] = $movies->enAvant();
+        $datas['aVenir'] = $movies->aVenir();
+        $datas['invisible'] = $movies->invisible();
+        $datas['budgetTotal'] = $movies->budgetTotal();
 
         // Envoi du tableau à la vue
         return view('Movies/index', $datas);
@@ -57,9 +60,58 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('Movies/create');
+        $categories = new Categories();
+        $datas = [
+            'categories' => $categories->categories()
+        ];
+
+        return view('Movies/create', $datas);
     }
 
+    /**
+     * @param MoviesRequest $request
+     * @return mixed
+     */
+    public function store(MoviesRequest $request)
+    {
+        $movie = new Movies();
+        $movie->type = $request->type;
+        $movie->title = $request->title;
+        $movie->synopsis = $request->synopsis;
+        $movie->description = $request->description;
+        $movie->trailer = $request->trailer;
+        $movie->categories_id = $request->categories_id;
+        $movie->languages = $request->lang;
+        $movie->distributeur = $request->distributeur;
+        $movie->bo = $request->bo;
+        $movie->annee = $request->annee;
+        $movie->budget = $request->budget;
+        $movie->duree = $request->duree;
+        $movie->date_release = $request->date_release;
+        $movie->note_presse = $request->note_presse;
+        $movie->visible = $request->visible;
+        $movie->cover = $request->cover;
+
+
+        /* Traitement de l'upload d'image */
+        $filename = "";
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName(); // Récupère le nom original du fichier
+            $destinationPath = public_path() . '/uploads/movies'; // Indique où stocker le fichier
+            $file->move($destinationPath, $filename); // Déplace le fichier
+        }
+        $movie->image = asset("uploads/movies/". $filename);
+
+        $movie->save();
+
+        Session::flash('success', "Le film $movie->title a été enregistré");
+
+        return Redirect::route('movies.index');
+
+    }
+    
+    
     /**
      * @return \Illuminate\View\View
      */
@@ -90,7 +142,12 @@ class MoviesController extends Controller
      */
     public function delete($id)
     {
+        dump($id);
+
+
         if(is_array($id)){
+
+
 
         } else {
 

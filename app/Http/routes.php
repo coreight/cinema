@@ -28,7 +28,10 @@ Route::any('/search', ['uses' => 'PagesController@search', 'as' => 'search']);
 Route::group(['prefix' => 'actors'], function() {
     Route::get('/index', ['uses' => 'ActorsController@index',
                                 'as' => 'actors.index']);
+    /* Page de création */
     Route::get('/create', ['uses' => 'ActorsController@create', 'as' => 'actors.create']);
+    /* Envoi du fomulaire de création */
+    Route::post('/post', ['uses' => 'ActorsController@store', 'as' => 'actors.post']);
     Route::get('{id}', ['uses' => 'ActorsController@read', 'as' => 'actors.read']) -> where ('id', '[0-9]+');
     Route::get('{id}/update', ['uses' => 'ActorsController@update']) -> where ('id', '[0-9]+');
     Route::get('{id}/delete', ['uses' => 'ActorsController@delete', 'as' => 'actors.delete']) -> where ('id', '[0-9]+');
@@ -39,6 +42,7 @@ Route::group(['prefix' => 'directors'], function() {
     Route::get('/index', ['uses' => 'DirectorsController@index',
                         'as' => 'directors.index']);
     Route::get('/create', ['uses' => 'DirectorsController@create', 'as' => 'directors.create']);
+    Route::post('/post', ['uses' => 'DirectorsController@store', 'as' => 'directors.post']);
     Route::get('{id}', ['uses' => 'DirectorsController@read', 'as' => 'directors.read']) -> where ('id', '[0-9]+');
     Route::get('{id}/update', ['uses' => 'DirectorsController@update']) -> where ('id', '[0-9]+');
     Route::get('{id}/delete', ['uses' => 'DirectorsController@delete', 'as' => 'directors.delete']) -> where ('id', '[0-9]+');
@@ -49,9 +53,10 @@ Route::group(['prefix' => 'movies'], function() {
     Route::any('/index', ['uses' => 'MoviesController@index',
         'as' => 'movies.index']);
     Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
+    Route::post('/post', ['uses' => 'MoviesController@store', 'as' => 'movies.post']);
     Route::get('{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read']) -> where ('id', '[0-9]+');
     Route::get('{id}/{field?}/{value?}/update', ['uses' => 'MoviesController@update', 'as' => 'movies.update']) -> where ('id', '[0-9]+');
-    Route::any('{id?}/delete', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete'])-> where ('id', '[0-9]+');
+    Route::get('{id}/delete', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete']);
     Route::get('search/{lang?}/{visibility?}/{length?}', ['uses' => 'MoviesController@search',
         'as' => 'movies.search'])
         -> where (['lang' => 'fr|en|es', 'visibility' => '[0-1]', 'length' => '[1-9]{1,2}' ]);
@@ -72,7 +77,7 @@ Route::group(['prefix' => 'users'], function() {
 
 });
 
-# USERS
+# CINEMAS
 Route::group(['prefix' => 'cinemas'], function() {
     Route::get('/index', ['uses' => 'CinemasController@index',
         'as' => 'cinemas.index']);
@@ -88,8 +93,15 @@ Route::group(['prefix' => 'categories'], function() {
     Route::get('/index', ['uses' => 'CategoriesController@index',
         'as' => 'categories.index']);
     Route::get('/create', ['uses' => 'CategoriesController@create', 'as' => 'categories.create']);
-    Route::get('{id}', ['uses' => 'CategoriesController@read', 'as' => 'categories.read']) -> where ('id', '[0-9]+');
-    Route::get('{id}/update', ['uses' => 'CategoriesController@update']) -> where ('id', '[0-9]+');
-    Route::get('{id}/delete', ['uses' => 'CategoriesController@delete', 'as' => 'categories.delete']) -> where ('id', '[0-9]+');
+    Route::post('/post', ['uses' => 'CategoriesController@store', 'as' => 'categories.post']);
+    Route::get('{id}', ['uses' => 'CategoriesController@read', 'as' => 'categories.read'])->where('id', '[0-9]+');
+    Route::get('{id}/update', ['uses' => 'CategoriesController@update'])->where('id', '[0-9]+');
+    Route::get('{id}/delete', ['uses' => 'CategoriesController@delete', 'as' => 'categories.delete'])->where('id', '[0-9]+');
+});
 
+
+# COMMENTAIRES
+Route::group(['prefix' => 'comments'], function() {
+    Route::get('/index', ['uses' => 'CommentsController@index',
+        'as' => 'comments.index']);
 });

@@ -58,6 +58,48 @@ init.push(function () {
         });
     });
 
+    /* Editeur WYSIWYG */
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 200
+        });
+    });
+
+    /* Datepicker */
+
+    $('.datepicker').datepicker({
+        format: 'yyyy/mm/dd',
+        todayBtn: 'linked'
+    })
+
+
+    /* jquery validator */
+    /*
+    $('#form-validate').validate({
+        rules: {
+            firstname: {
+                required: true,
+                minlength: 2
+            }
+        }
+    });
+    */
+
+    /* upload de fichiers */
+    $('#image').pixelFileInput(
+        {placeholder: 'Sélectionnez un fichier'}
+    );
+
+    /* Switcher */
+    $('.switcher').switcher({
+        on_state_content: 'OUI',
+        off_state_content: 'NON'
+    });
+
+    /* Multiselect */
+    $("#multiple").select2({
+        placeholder: "Selectionnez un film"
+    });
 
 
 

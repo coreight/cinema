@@ -15,10 +15,46 @@ class Movies extends Model
 {
     protected $table = 'movies';
 
-    /* Champs qui pourront $erte modifié en live dans l'application (voir Mass Assignment dans Laravel) */
+    /* Champs qui pourront être modifié en live dans l'application (voir Mass Assignment dans Laravel) */
     protected $fillable = ['visible'];
 
-    public static function dbSearch($bo, $visible) {
+
+
+    /* RELATIONS */
+
+    public function comments()
+    {
+        return $this->hasMany('App\Model\Comments');
+    }
+
+    public function actors()
+    {
+        return $this->hasMany('App\Model\Actors');
+    }
+
+    /**
+     * Retourne la catégorie à laquelle appartient un objet film
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function categorie()
+    {
+        return $this->belongsTo('App\Model\Categories');
+    }
+
+
+    /* METHODES */
+
+    /**
+     * Retourne la liste de tous les films
+     * @return mixed
+     */
+    public function movies()
+    {
+        return $movies = DB::table('movies')->get();
+    }
+
+
+    public function dbSearch($bo, $visible) {
 
 
         if ($bo == NULL) {
@@ -37,7 +73,7 @@ class Movies extends Model
         return $movies;
     }
 
-    public static function nbTotal()
+    public function nbTotal()
     {
 
         $nbTotal = DB::table('movies')
@@ -46,7 +82,7 @@ class Movies extends Model
         return $nbTotal;
     }
 
-    public static function enAvant()
+    public function enAvant()
     {
 
         $moviesEnAvant = DB::table('movies')
@@ -56,7 +92,7 @@ class Movies extends Model
         return $moviesEnAvant;
     }
 
-    public static function aVenir()
+    public function aVenir()
     {
         $moviesEnAvant = DB::table('movies')
             ->where('date_release', '>', new \DateTime())
@@ -65,7 +101,7 @@ class Movies extends Model
         return $moviesEnAvant;
     }
 
-    public static function invisible()
+    public function invisible()
     {
         $invisible = DB::table('movies')
             ->where('visible', 0)
@@ -74,15 +110,16 @@ class Movies extends Model
         return $invisible;
     }
 
-    public static function budgetTotal()
+    public function budgetTotal()
     {
         $budgetTotal = DB::table('movies')
             ->where('date_release', 'like', '2015%')
             ->sum('budget');
 
         return $budgetTotal;
-
     }
+
+
 
 
 

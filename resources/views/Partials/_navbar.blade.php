@@ -66,6 +66,12 @@
                 <li><a href="{{ route('users.create') }}"><i class="menu-icon fa fa-pencil"></i> Créer</a></li>
             </ul>
         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="menu-icon fa fa-pencil"></i> Commentaires</a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ route('comments.index') }}"><i class="menu-icon fa fa-search"></i> Voir</a></li>
+            </ul>
+        </li>
 
 </ul> <!-- / .navbar-nav -->
 

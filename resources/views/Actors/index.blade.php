@@ -14,9 +14,9 @@
     <h2>Acteurs</h2>
 
         <!-- Bouton d'ajout -->
-        <button class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
+        <a href="{{route('actors.create')}}" class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
             <span class="btn-label icon fa fa-pencil"></span>Ajouter un acteur
-        </button>
+        </a>
         <div class="clearfix"></div>
 
         <!-- Tableau -->

@@ -111,7 +111,7 @@
         <button type="submit" class="btn btn-primary">Filtrer</button>
     </form>
 
-    <form action="get" class="form-inline" id="form-tableau">
+    <form method="get" action="MoviesController@delete" class="form-inline" id="form-tableau">
 
 
         <!-- Bouton de modifications globales -->
@@ -128,7 +128,7 @@
                         <i class="fa fa-times-circle"></i>
                     </div>
                     <div class="modal-title">Êtes-vous sûr ?</div>
-                    <div class="modal-body">Vous allez supprimer...</div>
+                    <div class="modal-body">Vous allez supprimer un ou plusieurs films</div>
                     <div class="modal-footer">
                         <a href="{{route('movies.delete') }}" class="btn btn-flat btn-sm btn-labeled btn-danger btn-actions" id="jq-growl-success">
                             <span class="btn-label icon fa fa-times"></span>Supprimer</a>
@@ -138,12 +138,13 @@
         </div> <!-- / .modal -->
         <a class="btn btn-flat btn-sm" id="tableau-submit" data-toggle="modal" data-target="#modal-action">
             <span class="btn-label icon fa fa-chevron-right"></span></a>
+        <input type="submit" class="btn btn-flat btn-sm btn-danger" value="Supprimer">
 
 
         <!-- Bouton d'ajout -->
-        <button class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
+        <a href="{{ route('movies.create') }}" class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
             <span class="btn-label icon fa fa-pencil"></span>Ajouter un film
-        </button>
+        </a>
         <div class="clearfix"></div>
 
 

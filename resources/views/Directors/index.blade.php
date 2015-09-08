@@ -15,9 +15,9 @@
     <h2>Réalisateurs</h2>
 
     <!-- Bouton d'ajout -->
-    <button class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
+    <a href="{{route('directors.create')}}" class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
         <span class="btn-label icon fa fa-pencil"></span>Ajouter un réalisateur
-    </button>
+    </a>
     <div class="clearfix"></div>
 
     <!-- Tableau -->
