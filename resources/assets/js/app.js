@@ -49,8 +49,6 @@ init.push(function () {
     });
 
     /* Boutons des modal box lorsque plusieurs éléments sélectionnés */
-
-
     $('#tableau-submit').on('click', function() {
 
         $('#id :checkbox').each(function() {
@@ -70,8 +68,7 @@ init.push(function () {
     $('.datepicker').datepicker({
         format: 'yyyy/mm/dd',
         todayBtn: 'linked'
-    })
-
+    });
 
     /* jquery validator */
     /*
@@ -97,10 +94,38 @@ init.push(function () {
     });
 
     /* Multiselect */
-    $("#multiple").select2({
-        placeholder: "Selectionnez un film"
+    $(".multiple").select2({
+        placeholder: "Selectionnez un ou plusieurs éléments"
     });
 
+    /* Limite du nb de caractères */
+    $("#synopsis").limiter(200, { label: '#synopsis-limit-label' });
+    $("#register-description").limiter(160, { label: '#register-limit-label' });
 
+
+    /* Sliders */
+
+    $('#duree-slider').slider({
+        range : "min",
+        min: 0,
+        max: 6,
+        value: 1,
+        slide: function( event, ui ) {
+            $( "#duree" ).val( ui.value );
+        }
+    });
+
+    $( "#duree" ).val( $( "#duree-slider" ).slider( "value" ) );
+
+    $('#budget-slider').slider({
+        range : "min",
+        min: 0,
+        max: 1000000000,
+        value: 10,
+        slide: function( event, ui ) {
+            $( "#budget" ).val( ui.value );
+        }
+    });
+    $( "#budget" ).val( $( "#budget-slider" ).slider( "value" ) );
 
 });

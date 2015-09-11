@@ -33,9 +33,12 @@
                 <tr>
                     <td>{{ $cinema->title }}</td>
                     <td> {{ $cinema->ville }}</td>
-                    <td>
+                    <td class="col-md-2">
                         <button class="btn btn-flat btn-sm btn-labeled btn-actions">
                             <span class="btn-label icon fa fa-search"></span>Éditer
+                        </button>
+                        <button class="btn btn-flat btn-sm btn-labeled btn-primary btn-actions">
+                            <span class="btn-label icon fa fa-times"></span>Ajouter une séance
                         </button>
                         <button class="btn btn-flat btn-sm btn-labeled btn-danger btn-actions">
                             <span class="btn-label icon fa fa-times"></span>Supprimer

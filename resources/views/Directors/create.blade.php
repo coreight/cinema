@@ -85,6 +85,22 @@
                 </div>
             </div> <!-- / .form-group -->
 
+            <div class="form-group">
+                <label for="movies" class="col-sm-2 control-label">Films</label>
+                <div class="col-sm-10">
+                    <select name="movies[]"  multiple="multiple" value="{{ old('movies') }}" class="multiple form-control form-group-margin">
+
+                        @foreach ($movies as $movie)
+                            <option value="{{ $movie->id }}">{{ $movie->title  }}</option>
+                        @endforeach
+
+                    </select>
+                    @if ($errors->has('movies'))
+                        <p class="help-block text-danger">{{ $errors->first('movies') }}</p>
+                    @endif
+                </div>
+            </div> <!-- / .form-group -->
+
             <div class="form-group" style="margin-bottom: 0;">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>

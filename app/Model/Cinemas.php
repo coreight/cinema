@@ -12,4 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cinemas extends Model
 {
     protected $table = 'cinema';
+
+    public function movies()
+    {
+        return $this->hasMany('App\Model\Movies');
+    }
 }

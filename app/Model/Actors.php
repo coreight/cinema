@@ -19,5 +19,14 @@ class Actors extends Model
         return $this->hasMany('App\Model\Movies');
     }
 
+    /**
+     * Retourne la liste complète des acteurs
+     * @return mixed
+     */
+    public function actors()
+    {
+        return $actors = DB::table('actors')->orderBy('firstname')->get();
+    }
+
 
 }

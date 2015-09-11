@@ -111,45 +111,40 @@
         <button type="submit" class="btn btn-primary">Filtrer</button>
     </form>
 
-    <form method="get" action="MoviesController@delete" class="form-inline" id="form-tableau">
-
+    <form method="post" action="{{ route('movies.action') }}"  class="form-inline" id="form-tableau">
+    {!! csrf_field() !!}
 
         <!-- Bouton de modifications globales -->
-        <select class="form-control form-group-margin">
-            <option>Supprimer</option>
-            <option>Visible</option>
-            <option>Invisible</option>
+        <select name="action" id="actionList" class="form-control form-group-margin">
+            <option value="supprimer">Supprimer</option>
+            <option value="visible">Visible</option>
+            <option value="invisible">Invisible</option>
         </select>
-
-        <div id="modal-action" class="modal modal-alert modal-danger fade modal-blur">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <i class="fa fa-times-circle"></i>
-                    </div>
-                    <div class="modal-title">Êtes-vous sûr ?</div>
-                    <div class="modal-body">Vous allez supprimer un ou plusieurs films</div>
-                    <div class="modal-footer">
-                        <a href="{{route('movies.delete') }}" class="btn btn-flat btn-sm btn-labeled btn-danger btn-actions" id="jq-growl-success">
-                            <span class="btn-label icon fa fa-times"></span>Supprimer</a>
-                    </div>
-                </div> <!-- / .modal-content -->
-            </div> <!-- / .modal-dialog -->
-        </div> <!-- / .modal -->
-        <a class="btn btn-flat btn-sm" id="tableau-submit" data-toggle="modal" data-target="#modal-action">
-            <span class="btn-label icon fa fa-chevron-right"></span></a>
-        <input type="submit" class="btn btn-flat btn-sm btn-danger" value="Supprimer">
-
+        <button type="submit" class="btn btn-flat btn-sm">
+            <span class="btn-label icon fa fa-chevron-right"></span>
+        </button>
 
         <!-- Bouton d'ajout -->
         <a href="{{ route('movies.create') }}" class="btn btn-flat btn-sm btn-labeled btn-success btn-ajout">
             <span class="btn-label icon fa fa-pencil"></span>Ajouter un film
         </a>
+
+        <!-- Bouton corbeille  -->
+        @if (Route::current()->getName() != "movies.trash")
+            <a href="{{ route('movies.trash') }}" class="btn btn-flat btn-sm btn-labeled btn-ajout">
+                <span class="btn-label icon fa fa-trash-o"></span>Voir les supprimés
+            </a>
+        @else
+            <a href="{{ route('movies.index') }}" class="btn btn-flat btn-sm btn-labeled btn-ajout">
+                <span class="btn-label icon fa fa-list"></span>Revenir à l'index
+            </a>
+        @endif
+
         <div class="clearfix"></div>
 
 
         <!-- Tableau -->
-        <div class="table-light">
+        <div id="movies-table" class="table-light">
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                 <thead>
                 <tr>
@@ -166,8 +161,8 @@
                 <tbody>
                 @foreach($movies as $movie)
                     <tr id="id">
-                        <td>
-                            <input type="checkbox" name="id" value="id-{{ $movie->id }}">
+                        <td id="checkboxId">
+                            <input type="checkbox" name="id[]" value="{{ $movie->id }}" {{-- data-url="{{ route('movies.remove'), ['id' => $movie->id] }}" --}}>
                             {{ $movie->id }}
                         </td>
                         <td>
@@ -191,8 +186,31 @@
                             <button class="btn btn-flat btn-sm btn-labeled btn-actions">
                                 <span class="btn-label icon fa fa-search"></span>Éditer
                             </button>
+                            @if (Route::current()->getName() == "movies.trash")
+                                <!-- Bouton de restauration -->
+                                <a href="{{ route('movies.restore', ['id' => $movie->id ]) }}" class="btn btn-primary btn-flat btn-sm btn-labeled" ><span class="btn-label icon fa fa-pencil"></span>Restaurer</a>&nbsp;&nbsp;&nbsp;
+                                <!-- Bouton de suppression définitive -->
+                                <div id="movie-{{ $movie->id }}" class="modal modal-alert modal-danger fade modal-blur">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <i class="fa fa-times-circle"></i>
+                                            </div>
+                                            <div class="modal-title">Êtes-vous sûr ?</div>
+                                            <div class="modal-body">Vous allez supprimer <strong>DÉFINITIVEMENT</strong> "{{ $movie->title  }}"</div>
+                                            <div class="modal-footer">
+                                                <a href="{{route('movies.forceDelete', ['id' => $movie->id ]) }}" class="btn btn-flat btn-sm btn-labeled btn-danger btn-actions" id="jq-growl-success">
+                                                    <span class="btn-label btn-delete icon fa fa-times"></span>Supprimer définitivement</a>
+                                            </div>
+                                        </div> <!-- / .modal-content -->
+                                    </div> <!-- / .modal-dialog -->
+                                </div> <!-- / .modal -->
+                                <!-- / Danger -->
+                                <a class="btn btn-danger btn-flat btn-sm btn-labeled" data-toggle="modal" data-target="#movie-{{ $movie->id }}"><span class="btn-label icon fa fa-times"></span>Supprimer</a>&nbsp;&nbsp;&nbsp;
 
-                            <!-- Bouton de suppression -->
+
+                            @else
+                            <!-- Bouton de suppression temporaire -->
                             <div id="movie-{{ $movie->id }}" class="modal modal-alert modal-danger fade modal-blur">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -210,7 +228,7 @@
                             </div> <!-- / .modal -->
                             <!-- / Danger -->
                             <a class="btn btn-danger btn-flat btn-sm btn-labeled" data-toggle="modal" data-target="#movie-{{ $movie->id }}"><span class="btn-label icon fa fa-times"></span>Supprimer</a>&nbsp;&nbsp;&nbsp;
-
+                            @endif
                         </td>
                     </tr>
                 @endforeach

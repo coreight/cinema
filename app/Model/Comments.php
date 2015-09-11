@@ -14,6 +14,10 @@ class Comments extends Model
 {
     protected $table = 'comments';
 
+    /* Champs qui pourront être modifié en live dans l'application (voir Mass Assignment dans Laravel) */
+    protected $fillable = ['content', 'created_at', 'movies_id', 'user_id'];
+
+
     /* RELATIONS */
 
     public function movie()

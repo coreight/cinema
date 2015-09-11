@@ -26,6 +26,11 @@ footer a:hover {
     text-decoration: underline;
 }
 /*# sourceMappingURL=all.css.map */
+.theme-default.page-signin .signin-info,
+.theme-default.page-signup .signup-header,
+.theme-default .bg-primary {
+  background: #c0392b !important; }
+
 footer {
   position: fixed;
   bottom: 0;
@@ -44,10 +49,39 @@ footer {
     color: #FFF;
     text-decoration: underline; }
 
+/* Pages diverses */
+#duree, #budget {
+  border: none;
+  background: none; }
+
+/* Page register */
+#register-description {
+  height: 50px; }
+
+#register-limit-label {
+  margin-bottom: 10px; }
+
+#remember {
+  float: left;
+  width: auto;
+  height: auto;
+  margin-right: 10px; }
+
 .profil-picture {
   max-width: 40%;
   float: left;
   margin: 0 30px 30px 0; }
+
+/* MOVIES */
+.widget-article-comments {
+  clear: both; }
+  .widget-article-comments .comment {
+    background-color: #FFF; }
+  .widget-article-comments .comment-text {
+    margin-bottom: 20px;
+    background-color: #FFF; }
+    .widget-article-comments .comment-text .label {
+      margin: 10px 0; }
 
 .stat-panel {
   margin-bottom: 0; }
@@ -62,7 +96,7 @@ footer {
   display: none; }
 
 .btn-ajout {
-  margin: 0; }
+  margin: 0 10px; }
 
 .table-light {
   margin-top: 30px; }
@@ -76,8 +110,8 @@ footer {
 .table .btn-actions {
   margin-right: 10px; }
 
-.table .btn-actions:first-child {
-  margin-bottom: 10px; }
+.table .btn-actions {
+  margin-bottom: 5px; }
 
 /*# sourceMappingURL=app.css.map */
 

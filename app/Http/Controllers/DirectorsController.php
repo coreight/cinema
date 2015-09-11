@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Model\Directors;
+use App\Model\Movies;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\DirectorsRequest;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class DirectorsController
@@ -13,8 +15,6 @@ use App\Http\Requests\DirectorsRequest;
  */
 class DirectorsController extends Controller
 {
-
-
 
     /* ##################### METHODES ##################### */
 
@@ -33,7 +33,13 @@ class DirectorsController extends Controller
      */
     public function create()
     {
-        return view('Directors/create');
+        // On récupère la liste des films
+        $movies = new Movies();
+        $datas = [
+            'movies' => Movies::all()
+        ];
+
+        return view('Directors/create', $datas);
     }
 
     /**
@@ -59,8 +65,16 @@ class DirectorsController extends Controller
         }
         $director->image = asset("uploads/actors/". $filename);
 
-
         $director->save();
+
+        // Traitement des champs de la relations Directors_Movies
+        $movies = $request->movies;
+        foreach ($movies as $movie) {
+            DB::table('directors_movies')
+                ->insert([
+                    [ 'directors_id' => $director->id, 'movies_id' => $movie]
+                ]);
+        }
 
         Session::flash('success', "Le réalisateur $director->firstname $director->lastname a été enregistré");
 

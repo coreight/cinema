@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Cinemas;
+use App\Model\Movies;
 
 /**
  * Class CinemasController
@@ -20,6 +21,7 @@ class CinemasController extends Controller
      */
     public function index()
     {
+        $movies = new Movies();
         $datas = [
             'cinemas' => Cinemas::all()
         ];

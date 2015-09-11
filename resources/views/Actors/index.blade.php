@@ -20,7 +20,7 @@
         <div class="clearfix"></div>
 
         <!-- Tableau -->
-        <div class="table table-light">
+        <div id="actors-table" class="table table-light">
             <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
                 <thead>
                 <tr>
@@ -58,7 +58,7 @@
                                         <div class="modal-title">Êtes-vous sûr ?</div>
                                         <div class="modal-body">Vous allez supprimer {{ $actor->firstname }} {{ $actor->lastname }}</div>
                                         <div class="modal-footer">
-                                            <a href="{{route('actors.delete', ['id' => $actor->id ]) }}" class="btn btn-flat btn-sm btn-labeled btn-danger btn-actions" id="jq-growl-success">
+                                            <a href="{{route('actors.delete', ['id' => $actor->id ]) }}" class="btn btn-flat btn-sm btn-labeled btn-danger btn-actions  btn-delete" id="jq-growl-success">
                                                 <span class="btn-label icon fa fa-times"></span>Supprimer</a>                                    </div>
                                     </div> <!-- / .modal-content -->
                                 </div> <!-- / .modal-dialog -->

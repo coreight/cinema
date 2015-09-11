@@ -67,11 +67,26 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="menu-icon fa fa-pencil"></i> Commentaires</a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="menu-icon fa fa-pencil"></i> Comm.</a>
             <ul class="dropdown-menu">
                 <li><a href="{{ route('comments.index') }}"><i class="menu-icon fa fa-search"></i> Voir</a></li>
             </ul>
         </li>
+        <div class="nav navbar-nav pull-right right-navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+                    <img src="{{ Auth::user()->photo }}" alt="{{ Auth::user()->id }}">
+                    <span>{{ Auth::user()->name }}</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;Profil</a></li>
+                    <li><a href="{{ route('auth.update') }}"><i class="dropdown-icon fa fa-lock"></i>&nbsp;&nbsp;Compte</a></li>
+                    <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Paramètres</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{ url('auth/logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                </ul>
+            </li>
+        </div>
 
 </ul> <!-- / .navbar-nav -->
 

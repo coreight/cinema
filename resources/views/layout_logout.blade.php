@@ -17,60 +17,28 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/all.css" type="text/css">
         <link rel="stylesheet" href="/css/app.css" type="text/css">
-    @show <!-- permet d'ajouter des css spécifique sur certaines vues -->
-    <!-- on ne ferme pas la section -->
+        @show <!-- permet d'ajouter des css spécifique sur certaines vues -->
+        <!-- on ne ferme pas la section -->
 
-    <!--[if lt IE 9]>
-    <script src="js/ie.min.js"></script>
-    <![endif]-->
+        <!--[if lt IE 9]>
+        <script src="js/ie.min.js"></script>
+        <![endif]-->
 </head>
 
-<body class="theme-default main-menu-animated">
+<body class="theme-default">
 
 <script>var init = [];</script>
 
-<div id="main-wrapper">
+
+    @yield('content')
 
 
-@include('Partials._navbar')
-
-
-    <div id="main-menu" role="navigation">
-        <div id="main-menu-inner">
-            <div class="menu-content top" id="menu-content-demo">
-
-            </div>
-            @include('Partials._navigation')
-
-
-        </div> <!-- / #main-menu-inner -->
-    </div> <!-- / #main-menu -->
-    <!-- /4. $MAIN_MENU -->
-
-    <div id="content-wrapper">
-        <div class="page-header">
-            @yield('header')
-        </div>
-
-        {{-- Emplacement des alertes --}}
-        @include('Partials/_flashDatas')
-
-        {{--Contenu principal de la page--}}
-        @yield('content')
-
-    </div> <!-- / #content-wrapper -->
-
-    {{-- Footer--}}
-    @include('Partials._footer')
-
-    <div id="main-menu-bg"></div>
-</div> <!-- / #main-wrapper -->
 
 @section('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Pixel Admin's js -->
+    <!-- Pixel Admin's js -->
 
-<script src="/js/all.js"></script>
+    <script src="/js/all.js"></script>
 @show
 <script type="text/javascript">
     init.push(function () {

@@ -15,47 +15,6 @@ $(document).ready(function() {
 
     });
 
-    /* A VOIR, ne fonctionne pas */
-    $('#movies-table .btn-delete ').click(function (e) {
-
-        console.log('deleting');
-        // Annulation de l'action par défaut du bouton
-        e.preventDefault();
-
-        var elt = $(this);
-
-        $.ajax({url: elt.attr('href')}).done(function () {
-            $('.modal').modal('hide');
-            elt.parents('tr').fadeOut('slow');
-        });
-
-    });
-
-    // Commentaires : affichage automatique
-    $('#leave-comment-form').submit(function(e) {
-
-        e.preventDefault();
-        console.log('Submit ok');
-
-        var elt = $(this);
-
-        $.ajax({
-            url:elt.attr('action'),
-            method: "POST",
-            data: elt.serialize()
-
-        }).done(function(data) {
-            var html = '<li>' + elt.find('textarea').val() + '</li>';
-            // On fait apparaitre le commentaire
-            $('.comments-list').append(html);
-            // On vide le contenu du champ
-            elt.find('textarea').val("");
-        });
-
-    });
-
-
-
     /* A FINIR */
     $('#actionList').change(function () {
 
@@ -75,7 +34,7 @@ $(document).ready(function() {
 
         }
     });
-
+    */
 });
 
 
@@ -148,7 +107,8 @@ init.push(function () {
     $('.datepicker').datepicker({
         format: 'yyyy/mm/dd',
         todayBtn: 'linked'
-    });
+    })
+
 
     /* jquery validator */
     /*
@@ -194,7 +154,6 @@ init.push(function () {
             $( "#duree" ).val( ui.value );
         }
     });
-
     $( "#duree" ).val( $( "#duree-slider" ).slider( "value" ) );
 
     $('#budget-slider').slider({
