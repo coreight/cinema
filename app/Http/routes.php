@@ -23,9 +23,8 @@ Route::controllers([
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     # HOME
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
+
 
     # ADMIN
     Route::get('/auth/update', ['uses' => 'Auth\AuthController@update', 'as' => 'auth.update']);
@@ -68,6 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
             'as' => 'movies.index']);
         Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
         Route::post('/post', ['uses' => 'MoviesController@store', 'as' => 'movies.post']);
+        Route::post('/quickPost', ['uses' => 'MoviesController@quickStore', 'as' => 'movies.quickPost']);
         Route::get('{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read'])->where('id', '[0-9]+');
         Route::get('{id}/{field?}/{value?}/update', ['uses' => 'MoviesController@update', 'as' => 'movies.update'])->where('id', '[0-9]+');
         Route::get('{id}/delete', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete']);

@@ -127,4 +127,6 @@ class ActorsController extends Controller
         Session::flash('success', "L'acteur {$actor->firstname} {$actor->lastname} a bien été supprimé");
         return Redirect::route('actors.index');
     }
+
+
 }

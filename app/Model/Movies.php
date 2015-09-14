@@ -43,6 +43,11 @@ class Movies extends Model
         return $this->hasMany('App\Model\Actors');
     }
 
+    public function sessions()
+    {
+        return $this->hasMany('App\Model\Sessions');
+    }
+
      /* ##################### METHODES ##################### */
 
     /**
@@ -150,6 +155,16 @@ class Movies extends Model
         return $invisible;
     }
 
+    public function visible()
+    {
+        $visible = DB::table('movies')
+            ->where('visible', 1)
+            ->where('deleted_at', NULL)
+            ->count();
+
+        return $visible;
+    }
+
     public function budgetTotal()
     {
         $budgetTotal = DB::table('movies')
@@ -161,7 +176,11 @@ class Movies extends Model
     }
 
 
-
+    public function favMovies()
+    {
+        $fav = DB::select('SELECT COUNT( DISTINCT movies_id ) AS fav FROM  user_favoris');
+        return intval($fav[0]->fav);
+    }
 
 
 }

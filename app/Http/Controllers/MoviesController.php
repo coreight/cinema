@@ -10,7 +10,7 @@ use App\Model\Comments;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
-use App\Http\Requests\MoviesRequest;
+use App\Http\Requests\MoviesQuickRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent;
 
@@ -139,6 +139,21 @@ class MoviesController extends Controller
         Session::flash('success', "Le film $movie->title a été enregistré");
 
         return Redirect::route('movies.index');
+
+    }
+
+    public function quickStore(MoviesQuickRequest $request)
+    {
+        $movie = new Movies();
+        $movie->title = $request->title;
+        $movie->categories_id = $request->categories_id;
+        $movie->synopsis = $request->synopsis;
+
+        $movie->save();
+
+        Session::flash('success', "Le film $movie->title a été enregistré");
+
+        return Redirect::route('dashboard');
 
     }
 

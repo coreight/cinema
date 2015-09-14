@@ -30,7 +30,20 @@
     <favorites_list name="Laravel" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="DashboardController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DashboardController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16629712">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#40#61#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,9 +55,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/Pages/search.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CommentsController.php" />
         <option value="$PROJECT_DIR$/resources/views/Comments/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Directors/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/ActorsRequest.php" />
@@ -54,17 +64,14 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" />
         <option value="$PROJECT_DIR$/app/Model/Categories.php" />
         <option value="$PROJECT_DIR$/resources/views/Categories/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ActorsController.php" />
         <option value="$PROJECT_DIR$/resources/views/Actors/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/MoviesRequest.php" />
-        <option value="$PROJECT_DIR$/app/Model/Actors.php" />
         <option value="$PROJECT_DIR$/app/Model/Directors.php" />
         <option value="$PROJECT_DIR$/resources/views/Directors/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DirectorsController.php" />
         <option value="$PROJECT_DIR$/app/Model/Cinemas.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CinemasController.php" />
         <option value="$PROJECT_DIR$/resources/views/Cinemas/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Model/Sessions.php" />
         <option value="$PROJECT_DIR$/resources/views/Auth/index.blade.php" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/resources/views/layout_logout.blade.php" />
@@ -83,16 +90,22 @@
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Actors/index.blade.php" />
         <option value="$PROJECT_DIR$/public/js/all.js" />
-        <option value="$PROJECT_DIR$/resources/assets/js/app.js" />
         <option value="$PROJECT_DIR$/resources/assets/sass/table.sass" />
         <option value="$PROJECT_DIR$/resources/views/Movies/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Model/Movies.php" />
-        <option value="$PROJECT_DIR$/app/Model/Comments.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" />
-        <option value="$PROJECT_DIR$/resources/assets/sass/read.sass" />
         <option value="$PROJECT_DIR$/resources/views/Movies/read.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ActorsController.php" />
+        <option value="$PROJECT_DIR$/app/Model/Actors.php" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/read.sass" />
+        <option value="$PROJECT_DIR$/app/Model/Comments.php" />
+        <option value="$PROJECT_DIR$/resources/assets/js/app.js" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/MoviesQuickRequest.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/ajax.js" />
+        <option value="$PROJECT_DIR$/app/Model/Movies.php" />
+        <option value="$PROJECT_DIR$/app/Model/Sessions.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" />
       </list>
     </option>
   </component>
@@ -152,7 +165,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -163,7 +176,156 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.lastSelected" value="web-ide.project.structure" />
@@ -173,18 +335,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="SearchEverywhereHistoryKey" value="aja&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/ajax.js&#10;sass&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/sass/read.sass&#10;mment&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Comments.php&#10;create&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/create.blade.php&#10;comme&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Comments.php&#10;movie&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Movies.php&#10;route&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;navbar&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;oute&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;movies&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Movies.php&#10;read&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/read.blade.php&#10;index&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Actors/index.blade.php&#10;ajax&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/ajax.js&#10;controll&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/MoviesController.php&#10;app.js&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;all&#9;FILE&#9;file:///home/wal04/sites/Laravel/public/js/all.js&#10;app&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;gulp&#9;FILE&#9;file:///home/wal04/sites/Laravel/gulpfile.js&#10;ayout&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout.blade.php&#10;index.bla&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Actors/index.blade.php&#10;layout&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout.blade.php&#10;uth&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/Auth/AuthController.php&#10;aut&#9;FILE&#9;file:///home/wal04/sites/Laravel/config/auth.php&#10;auth&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/Auth/AuthController.php&#10;form&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/sass/form.sass&#10;.js&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;login&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/login.blade.php&#10;acto&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/ActorsController.php&#10;ute&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;nav&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;navba&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;update&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/update.blade.php&#10;inde&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/index.blade.php&#10;regist&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/register.blade.php&#10;avbar&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;crea&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/create.blade.php&#10;navigatio&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navigation.blade.php&#10;movi&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Requests/MoviesRequest.php&#10;register&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/register.blade.php&#10;you&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout_logout.blade.php&#10;routes&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;gi&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/register.blade.php&#10;app.css&#9;FILE&#9;file:///home/wal04/sites/Laravel/public/css/app.css&#10;layou&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout.blade.php&#10;ROUT&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;cinem&#9;null&#9;null&#10;actors&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Actors.php&#10;index.blade&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Cinemas/index.blade.php&#10;vies&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Movies.php&#10;creat&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/create.blade.php" />
+    <property name="SearchEverywhereHistoryKey" value="read&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/read.blade.php&#10;ies&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Movies.php&#10;sass&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/sass/read.sass&#10;js&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;movies&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Requests/MoviesRequest.php&#10;moviesre&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Requests/MoviesRequest.php&#10;route&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;routes&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;create&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/create.blade.php&#10;creat&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/create.blade.php&#10;comments&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Comments.php&#10;actors&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/ActorsController.php&#10;actor&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/ActorsController.php&#10;aja&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/ajax.js&#10;mment&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Comments.php&#10;comme&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Comments.php&#10;movie&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Model/Movies.php&#10;navbar&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;oute&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;index&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Actors/index.blade.php&#10;ajax&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/ajax.js&#10;controll&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/MoviesController.php&#10;app.js&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;all&#9;FILE&#9;file:///home/wal04/sites/Laravel/public/js/all.js&#10;app&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;gulp&#9;FILE&#9;file:///home/wal04/sites/Laravel/gulpfile.js&#10;ayout&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout.blade.php&#10;index.bla&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Actors/index.blade.php&#10;layout&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout.blade.php&#10;uth&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/Auth/AuthController.php&#10;aut&#9;FILE&#9;file:///home/wal04/sites/Laravel/config/auth.php&#10;auth&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/Auth/AuthController.php&#10;form&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/sass/form.sass&#10;.js&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/assets/js/app.js&#10;login&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/login.blade.php&#10;acto&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Controllers/ActorsController.php&#10;ute&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/routes.php&#10;nav&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;navba&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;update&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/update.blade.php&#10;inde&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/index.blade.php&#10;regist&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/register.blade.php&#10;avbar&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navbar.blade.php&#10;crea&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Movies/create.blade.php&#10;navigatio&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Partials/_navigation.blade.php&#10;movi&#9;FILE&#9;file:///home/wal04/sites/Laravel/app/Http/Requests/MoviesRequest.php&#10;register&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/register.blade.php&#10;you&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/layout_logout.blade.php&#10;gi&#9;FILE&#9;file:///home/wal04/sites/Laravel/resources/views/Auth/register.blade.php&#10;app.css&#9;FILE&#9;file:///home/wal04/sites/Laravel/public/css/app.css" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lumen" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Requests" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/resources/views/Auth" />
       <recent name="$PROJECT_DIR$/app/Model" />
-      <recent name="$PROJECT_DIR$/app/Http/Requests" />
       <recent name="$PROJECT_DIR$/resources/assets/sass" />
-      <recent name="$PROJECT_DIR$/public/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/Auth" />
@@ -246,7 +408,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="24" width="900" height="1416" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30796254" sideWeight="0.5039548" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35128805" sideWeight="0.77692306" order="0" side_tool="false" content_ui="combo" x="1622" y="72" width="215" height="1320" />
@@ -256,7 +418,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290398" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24469697" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24848485" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1886657" sideWeight="0.22307692" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -320,55 +482,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/Directors/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-33.708332">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DirectorsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10638298">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Actors.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17730497">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CinemasController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Cinemas/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.727273">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Cinemas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.625">
-          <caret line="17" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Sessions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Documents/dev_Matt/bootstrap theme/pages-signin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6174699">
@@ -408,27 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18032786">
           <caret line="11" column="97" selection-start-line="11" selection-start-column="95" selection-end-line="11" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/color.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5">
-          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/dev_Matt/bootstrap theme/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21782178">
-          <caret line="367" column="12" selection-start-line="367" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/MoviesRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -478,13 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2687039">
           <caret line="17" column="49" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActorsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
-          <caret line="51" column="45" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -589,13 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.129032">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/table.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.75">
@@ -610,14 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Movies/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3551797">
-          <caret line="202" column="85" selection-start-line="202" selection-start-column="75" selection-end-line="202" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Partials/_navbar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5961945">
@@ -625,51 +695,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Movies.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/Movies/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15730338">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6976744">
+          <caret line="49" column="10" selection-start-line="15" selection-start-column="4" selection-end-line="49" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Movies/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActorsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26966292">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="-47.625">
+          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Actors.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-37.5">
+          <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CommentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/dev_Matt/bootstrap theme/ui-panels.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.36363637">
+          <caret line="629" column="34" selection-start-line="628" selection-start-column="8" selection-end-line="629" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/color.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06550218">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Comments.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25369978">
-          <caret line="17" column="73" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.8459086">
+          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+          <folding>
+            <marker date="1442234191149" expanded="true" signature="-1:-1" placeholder="SELECT user...." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Movies/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.708334">
+          <caret line="291" column="37" selection-start-line="287" selection-start-column="7" selection-end-line="291" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.98034936">
+          <caret line="69" column="98" selection-start-line="69" selection-start-column="98" selection-end-line="69" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/MoviesRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19650654">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/MoviesQuickRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14737992">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MoviesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="334" column="26" selection-start-line="334" selection-start-column="26" selection-end-line="334" selection-end-column="26" />
+        <state vertical-scroll-proportion="-5.7272725">
+          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
             <element signature="e#40#65#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.774194">
+          <caret line="36" column="56" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80851066">
+          <caret line="91" column="39" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/read.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="9" selection-end-column="19" />
+        <state vertical-scroll-proportion="-3.75">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/dev_Matt/bootstrap theme/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.054545">
+          <caret line="944" column="53" selection-start-line="926" selection-start-column="12" selection-end-line="944" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Sessions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#29#68#0#PHP" expanded="true" />
+            <marker date="1442244307893" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sessions..." />
+            <marker date="1442244307893" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sessions..." />
+            <marker date="1442244307893" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..sessions..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Movies.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.708334">
+          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+          <folding>
+            <element signature="e#29#68#0#PHP" expanded="true" />
+            <marker date="1442244260449" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..user_favoris..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -681,11 +858,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/ajax.js">
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41237113">
-          <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
-          <folding />
+        <state vertical-scroll-proportion="-28.625">
+          <caret line="220" column="98" selection-start-line="220" selection-start-column="98" selection-end-line="220" selection-end-column="98" />
+          <folding>
+            <element signature="e#10484#10509#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DashboardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16629712">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#40#61#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

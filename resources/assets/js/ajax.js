@@ -32,7 +32,7 @@ $(document).ready(function() {
     });
 
     // Commentaires : affichage automatique
-    $('#leave-comment-form').submit(function(e) {
+    $('#leave-comment-form').submit(function (e) {
 
         e.preventDefault();
         console.log('Submit ok');
@@ -40,11 +40,11 @@ $(document).ready(function() {
         var elt = $(this);
 
         $.ajax({
-            url:elt.attr('action'),
+            url: elt.attr('action'),
             method: "POST",
             data: elt.serialize()
 
-        }).done(function(data) {
+        }).done(function (data) {
             // RESTE A VOIR : comment styler. Simplement rechargement du panel ?
             var html = '<li>' + elt.find('textarea').val() + '</li>';
             // On fait apparaitre le commentaire
@@ -54,7 +54,6 @@ $(document).ready(function() {
         });
 
     });
-
 
 
     /* A FINIR */
@@ -75,6 +74,24 @@ $(document).ready(function() {
             });
 
         }
+    });
+
+    /* Ajout rapide de films */
+    $('#quickAddMovie').submit(function (e) {
+        e.preventDefault();
+        console.log('submit ok');
+        var elt = $(this);
+
+        $.ajax({
+            url: elt.attr('action'),
+            method: "POST", // Methode d'envoi de ma requete
+            data: elt.serialize()
+        // data: envoyer des données
+        }).done(function () {
+            elt.parents('.col-md-6').fadeOut('slow');
+            $.growl.notice({ message: "Film ajouté", duration: 5000});
+        });
+
     });
 
 });

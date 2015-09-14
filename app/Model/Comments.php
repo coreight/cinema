@@ -32,6 +32,10 @@ class Comments extends Model
 
     /* METHODES */
 
+    /**
+     * Retourne l'utilisateur ayant le plus  commenté
+     * @return mixed
+     */
     public function bestCommenter()
     {
         $bestCommenter = DB::select('
@@ -44,6 +48,17 @@ class Comments extends Model
 
         return $bestCommenter;
     }
+
+    /*
+     * Scope retournant les commentaires correspondants à un statut particulier
+     * @param $statut
+     * @return mixed
+     */
+    public function scopeStatutComments($query, $statut)
+    {
+        return $query->where('state', $statut);
+    }
+
 
 
 

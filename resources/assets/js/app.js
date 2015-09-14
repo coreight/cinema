@@ -128,4 +128,15 @@ init.push(function () {
     });
     $( "#budget" ).val( $( "#budget-slider" ).slider( "value" ) );
 
+
+    /* Charts */
+    $('.pie-chart').easyPieChart({
+        barColor: '#c0392b',
+        lineWidth: 7,
+        scaleColor: false
+
+
+    });
+
+
 });

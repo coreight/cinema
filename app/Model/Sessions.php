@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 /**
@@ -13,5 +15,14 @@ class Sessions extends Model
 {
     protected $table = 'sessions';
 
+
+    /* METHODES */
+
+
+    public function scopeNextSessions($query)
+    {
+        $current = Carbon::now();
+        return $query->where('date_session', '>', $current);
+    }
 
 }
