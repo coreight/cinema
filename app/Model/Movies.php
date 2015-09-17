@@ -40,12 +40,22 @@ class Movies extends Model
 
     public function actors()
     {
-        return $this->hasMany('App\Model\Actors');
+        return $this->belongsToMany('App\Model\Actors');
+    }
+
+    public function directors()
+    {
+        return $this->belongsToMany('App\Model\Directors');
     }
 
     public function sessions()
     {
         return $this->hasMany('App\Model\Sessions');
+    }
+
+    public function recommandations()
+    {
+        return $this->hasMany('App\Model\Recommandations');
     }
 
      /* ##################### METHODES ##################### */
@@ -181,6 +191,76 @@ class Movies extends Model
         $fav = DB::select('SELECT COUNT( DISTINCT movies_id ) AS fav FROM  user_favoris');
         return intval($fav[0]->fav);
     }
+
+
+    public function bestDirectors()
+    {
+        // Récupération des réalisateurs les plus prolifiques
+        $bestDirectors = DB::select('SELECT directors_id
+                              FROM  `directors_movies`
+                              GROUP BY directors_id
+                              ORDER BY COUNT( movies_id ) DESC
+                              LIMIT 4');
+
+        // Enregistrement des réalisateurs dans un tableau
+        $array = array();
+        foreach($bestDirectors as $bestDirector) {
+            array_push($array, $bestDirector->directors_id);
+        }
+        return $array;
+    }
+
+    /**
+     * Films des 4 réalisateurs les plus prolifiques
+     */
+    public function moviesBestDirectors($director, $date_release)
+    {
+
+        // Requête des films tournés par ces réalisateurs
+        //        return DB::table('directors_movies')->whereIn('directors_id', $array)->get();
+
+        $query = DB::select('SELECT directors_movies.directors_id,
+                            DATE_FORMAT(movies.date_release, "%Y") AS date_release
+                            FROM directors_movies
+                            LEFT JOIN movies ON movies.id = directors_movies.movies_id
+                            WHERE directors_movies.directors_id = '.$director.'
+                            AND DATE_FORMAT(movies.date_release, "%Y") = '.$date_release);
+        return $query;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 
 /**
@@ -12,4 +13,20 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     protected $table = 'user';
+
+    /**
+     * @return mixed
+     */
+    public function recentUsers($jours)
+    {
+        $now = new Carbon('NOW');
+        $date = $now->subDays($jours);
+
+        return Users::where('lastActivity', '>' , $date)->orderBy('lastActivity','DESC')->get();
+
+    }
+
+
 }
+
+

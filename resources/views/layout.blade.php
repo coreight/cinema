@@ -68,7 +68,8 @@
 
 @section('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Pixel Admin's js -->
+
+    <!-- Pixel Admin's js -->
 
 <script src="/js/all.js"></script>
 @show

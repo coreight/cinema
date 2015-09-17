@@ -7,24 +7,23 @@ use Illuminate\Support\Facades\DB;
 
 
 /**
- * Class Cinemas représentant la table cinemas
+ * Class Tasks représentant la table tasks
  * @package app\Model
  */
-class Cinemas extends Model
+class Tasks extends Model
 {
-    protected $table = 'cinema';
-
-    /* RELATIONS */
+    protected $table = 'tasks';
 
     public function movies()
     {
         return $this->hasMany('App\Model\Movies');
     }
 
-    /* METHODES */
 
-    public function cinemas()
+    public function administrators()
     {
-        return $cinemas = DB::table('cinema')->get();
+        return $this->hasMany('App\Model\Administrators');
     }
+
+
 }

@@ -54,6 +54,9 @@ footer {
   border: none;
   background: none; }
 
+.datepicker, .bootstrap-timepicker-widget {
+  z-index: 1500 !important; }
+
 /* Page register */
 #register-description {
   height: 50px; }
@@ -78,6 +81,12 @@ footer {
 
 .chart {
   text-align: center; }
+
+.cine {
+  display: none; }
+
+.switch, .title {
+  margin-bottom: 30px; }
 
 /* MOVIES */
 .widget-article-comments {

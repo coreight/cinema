@@ -47,8 +47,7 @@ class Actors extends Model
             $array[$d->id] = $diff->format('%y');
         };
 
-        // Retour de la moyenne d'âge
-        return round(array_sum($array) / count ($array));
+        return $array;
     }
 
 

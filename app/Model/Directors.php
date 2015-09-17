@@ -23,4 +23,15 @@ class Directors extends Model
         return $directors = DB::table('directors')->orderBy('firstname')->get();
     }
 
+    public function bestDirectors()
+    {
+        return $bestDirectors = DB::select('
+                      SELECT directors_id, COUNT(directors_id)
+                      FROM directors_movies
+                      GROUP BY directors_id
+                      ORDER BY COUNT(directors_id) DESC
+                      LIMIT 4');
+    }
+
+
 }

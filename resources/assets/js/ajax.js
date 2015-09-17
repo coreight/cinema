@@ -56,7 +56,29 @@ $(document).ready(function() {
     });
 
 
-    /* A FINIR */
+    /* Dashboard : rafraîchissement temps réel des prochaines séances */
+    $('.modalAddSession').submit(function (e) {
+
+        e.preventDefault();
+
+        var elt = $(this);
+
+        $.ajax({
+            //url: elt.attr('action'),
+            url: '/admin/sessions',
+            method: "POST",
+            data: elt.serialize()
+
+        }).done(function (data) {
+            // A VOIR
+            console.log('session ok');
+            //$('#dashboard-support-tickets').html(data);
+        });
+
+     });
+
+
+        /* A FINIR */
     $('#actionList').change(function () {
 
         var selection = $(this).val();
@@ -93,5 +115,45 @@ $(document).ready(function() {
         });
 
     });
+
+
+
+    /* Refresh de blocks */
+    $(".refresh").click(function() {
+
+        $.ajax({
+            // Récupération de la route utile au contrôleur
+           url: $('.refreshing').attr('data-url')
+
+        }).done(function(data) {
+
+            // Rafraichissement du bloc avec les nouvelles données
+            $('.refreshing').hide().html(data).fadeIn('slow');
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });

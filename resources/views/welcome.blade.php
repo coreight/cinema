@@ -1,13 +1,22 @@
 @extends('layout')
 
+@section('js')
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    @parent
+@endsection
 
 @section('title')
     Accueil
 @endsection
 
 
-
 @section('content')
+
+    <div class="switch pull-right">
+        <a class="btn btn-flat btn-md disabled">Simple</a>
+        <a href="{{ route('dashboard2') }}" class="btn btn-flat btn-md">Advance</a>
+        <a href="{{ route('dashboard3') }}" class="btn btn-flat btn-md">Pro</a>
+    </div>
 
     <h2 class="title">Accueil</h2>
     <!-- Panneau d'information -->
@@ -15,7 +24,7 @@
         <div class="col-md-6">
             <div class="stat-panel">
                 <a href="#" class="stat-cell col-xs-5 bg-success bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg">
-                    Moyenne d'&acirc;ge des acteurs<br><strong>{{ $dob }} ans</strong>
+                    Moyenne d'&acirc;ge des acteurs<br><strong>{{ round(array_sum($dob) / count ($dob)) }} ans</strong>
                 </a> <!-- /.stat-cell -->
                 <!-- Without padding, extra small text -->
                 <div class="stat-cell col-xs-7 no-padding valign-middle">
@@ -43,7 +52,6 @@
                 </div> <!-- /.stat-cell -->
             </div>
         </div>
-
         <!-- Panneau d'information -->
         <div class="col-md-6">
             <div class="stat-panel">
@@ -217,10 +225,13 @@
                     <div class="panel-padding no-padding-vr">
                         @foreach ($nextSessions as $nextSession)
                             <div class="ticket">
-                                <span class="label label-success ticket-label">Completed</span>
-                                <a href="#" title="" class="ticket-title">{{ $nextSession->movies_id }}<span>[#201798]</span></a>
+
+                                <span class="label label-{{ $delaiNextSessions[$nextSession->id]['color'] }} ticket-label">
+                                    Sortie dans {{ $delaiNextSessions[$nextSession->id]['delai'] }} jours
+                                </span>
+                                <a href="#" title="" class="ticket-title">{{ $nextSession->movies->title }}<span>[#{{ $nextSession->movies->id }}]</span></a>
 								<span class="ticket-info">
-									Opened by <a href="#" title="">Timothy Owens</a> today
+									diffus&eacute; &agrave; <a href="#" title="">{{ $nextSession->cinema->title }}</a>
 								</span>
                             </div> <!-- / .ticket -->
                         @endforeach
@@ -233,4 +244,7 @@
 
 
 
+
 @endsection
+
+

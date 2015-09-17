@@ -23,7 +23,8 @@ class CinemasController extends Controller
     {
         $movies = new Movies();
         $datas = [
-            'cinemas' => Cinemas::all()
+            'cinemas' => Cinemas::all(),
+            'movies' => $movies->movies(),
         ];
 
         return view('Cinemas/index', $datas);       }

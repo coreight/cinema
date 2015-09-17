@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     # HOME
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
+    Route::get('/dashboard2', ['uses' => 'DashboardController@dashboard2', 'as' => 'dashboard2']);
+    Route::get('/dashboard3', ['uses' => 'DashboardController@dashboard3', 'as' => 'dashboard3']);
 
 
     # ADMIN
@@ -124,4 +126,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('/index', ['uses' => 'CommentsController@index',
             'as' => 'comments.index']);
     });
+
+    # SESSIONS
+    Route::group(['prefix' => 'sessions'], function () {
+        Route::post('/post', ['uses' => 'SessionsController@store',
+            'as' => 'sessions.post']);
+    });
+
+    # RECOMMANDATIONS
+    Route::group(['prefix' => 'recommandations'], function () {
+        Route::get('/', ['uses' => 'RecommandationsController@ajax',
+            'as' => 'recommandations.ajax']);
+    });
+
+
+
 });
