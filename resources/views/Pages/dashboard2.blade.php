@@ -16,6 +16,7 @@
         <a href="{{ route('dashboard') }}" class="btn btn-flat btn-md">Simple</a>
         <a class="btn btn-flat btn-md disabled">Advance</a>
         <a  href="{{ route('dashboard3') }}" class="btn btn-flat btn-md">Pro</a>
+        <a  href="{{ route('dashboard4') }}" class="btn btn-flat btn-md">Master</a>
     </div>
 
 

@@ -59,7 +59,42 @@ class Comments extends Model
         return $query->where('state', $statut);
     }
 
+    public function nbComments()
+    {
+        return Comments::all()->count();
+    }
 
+    /**
+     * Retourne le nombre de commentaires par cinéma
+     * @return mixed
+     */
+    public function commentsByCinema()
+    {
+        return DB::select('
+            SELECT cinema.id, cinema.title, COUNT(cinema_movies.cinemas_id) AS nb
+            FROM `cinema_movies`
+            LEFT JOIN movies ON movies.id = cinema_movies.movies_id
+            LEFT JOIN comments ON comments.movies_id = movies.id
+            LEFT JOIN cinema ON cinema.id = cinema_movies.cinemas_id
+            GROUP BY (cinema_movies.cinemas_id)
+            ORDER BY COUNT(cinema_movies.cinemas_id) DESC');
+    }
+
+    /**
+     * Retourne le nombre de commentaires par film
+     * @return mixed
+     */
+    public function commentsByMovie($cinema)
+    {
+        return DB::select('
+            SELECT movies.title, COUNT( comments.movies_id ) AS nb
+            FROM  `comments`
+            LEFT JOIN movies ON movies.id = comments.movies_id
+            LEFT JOIN cinema_movies ON cinema_movies.movies_id = movies.id
+            WHERE cinema_movies.cinemas_id ='. $cinema .'
+            GROUP BY comments.movies_id
+            ORDER BY nb DESC ');
+    }
 
 
 

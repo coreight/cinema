@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 /**
  * Class PagesController
  * @package App\Http\Controllers
@@ -32,6 +33,18 @@ class PagesController extends Controller
      */
     public function faq()
     {
+
+        // Test Mongo
+        $m = new \MongoClient();
+        $db = $m->selectDB('Laravel');
+        $collection = new \MongoCollection($db, 'unicorns');
+        $find = array('name' => 'Horny');
+        $result = $collection->find($find);
+        foreach ($result as $document) {
+            dump($document);
+        }
+
+
         return view('Pages/faq');
 
     }
@@ -50,5 +63,6 @@ class PagesController extends Controller
 
         return view('Pages/search');
     }
+
 
 }

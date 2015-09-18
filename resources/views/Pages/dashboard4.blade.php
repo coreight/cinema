@@ -15,12 +15,12 @@
     <div class="switch pull-right">
         <a href="{{ route('dashboard') }}" class="btn btn-flat btn-md">Simple</a>
         <a href="{{ route('dashboard2') }}" class="btn btn-flat btn-md">Advance</a>
-        <a class="btn btn-flat btn-md disabled">Pro</a>
-        <a href="{{ route('dashboard4') }}" class="btn btn-flat btn-md">Master</a>
+        <a href="{{ route('dashboard3') }}"  class="btn btn-flat btn-md">Pro</a>
+        <a class="btn btn-flat btn-md disabled">Master</a>
     </div>
 
 
-    <h2 class="title">Dashboard pro</h2>
+    <h2 class="title">Dashboard Master</h2>
 
     <div class="row">
         <div class="col-md-6">
@@ -28,21 +28,12 @@
                 <div class="stat-row">
                     <!-- Dark gray background, small padding, extra small text, semibold text -->
                     <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
-                        <i class="fa fa-user"></i>&nbsp;&nbsp;R&eacute;partition des acteurs par ville
+                        <i class="fa fa-euro"></i>&nbsp;&nbsp;R&eacute;partition du budget pour les 4 meilleures catégories
                     </div>
                 </div> <!-- /.stat-row -->
                 <div class="panel-body tab-content-padding">
                     <div class="panel-padding no-padding-vr">
 
-                        @foreach ($actorsOrigin as $city => $nb)
-
-                            <div class="data-chart hide" data-city="{{ $city }}" data-nb="{{ $nb }}"></div>
-
-                        @endforeach
-
-                        <div id="chart" style="height:300px">
-
-                        </div>
 
                     </div>
                 </div>
@@ -54,21 +45,38 @@
                 <div class="stat-row">
                     <!-- Dark gray background, small padding, extra small text, semibold text -->
                     <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
-                        <i class="fa fa-user"></i>&nbsp;&nbsp;R&eacute;partition des acteurs par âge
+                        <i class="fa fa-pencil"></i>&nbsp;&nbsp;R&eacute;partition du nombre de commentaires par cinéma
                     </div>
                 </div> <!-- /.stat-row -->
                 <div class="panel-body tab-content-padding">
                     <div class="panel-padding no-padding-vr">
 
-                        @foreach ($tranchesAge as $tranche => $value)
+                        <comments nbtotal="{{$nbTotalComments}}"></comments>
 
-                            <div class="data-donut hide" data-tranche="{{ $tranche }}" data-val="{{ round($value / $nbActors *100) }}"></div>
+                        @foreach ($commentsByCinemas as $commentsByCinema)
+
+                            {{--{{dump($commentsByCinema)}}--}}
+                            <cine title="{{ $commentsByCinema->title }}" nb="{{ $commentsByCinema->nb }}"">
+
+                                {{-- On génère les éléments pour les films de chaque cinéma --}}
+                                <?php
+                                    $comments = new \App\Model\Comments();
+                                    $commentsByMovies = $comments->commentsByMovie($commentsByCinema->id);
+
+
+                                ?>
+                                @foreach($commentsByMovies as $commentsByMovie)
+
+                                    <movie title="{{ $commentsByMovie->title }}" nb="{{ $commentsByMovie->nb }}"></movie>
+
+                                @endforeach
+
+                            </cine>
 
                         @endforeach
 
-                        <div id="donut" style="height:300px">
 
-                        </div>
+                        <div id="highcharts" style="width:100%; height:400px;"></div>
 
                     </div>
                 </div>
@@ -78,50 +86,33 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="stat-panel widget-support-tickets" id="dashboard-support-tickets">
                 <div class="stat-row">
                     <!-- Dark gray background, small padding, extra small text, semibold text -->
                     <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
-                        <i class="fa fa-user"></i>&nbsp;&nbsp;R&eacute;partition des films par an des 4 meilleurs réalisateurs
+                        <i class="fa fa-pencil"></i>&nbsp;&nbsp;R&eacute;partition des films par cat&eacute;gories
                     </div>
                 </div> <!-- /.stat-row -->
                 <div class="panel-body tab-content-padding">
                     <div class="panel-padding no-padding-vr">
 
+                        <nbmovies nb="{{ $nbTotalMovies }}"></nbmovies>
+                        @foreach ($moviesByCategorie as $key => $value)
 
-                        {{--  éléments HTML 5 pour la création des graphiques --}}
-                        <?php $i = 0 ?>
-                        @foreach ($bestDirectors as $bestDirector)
-                            <?php
-                            $i++;
-                            ?>
-                            <director data-num="d{{ $i }}" data-director="{{ $bestDirector }}"></director>
+                            <movcat category="{{ $key }}" nb="{{ $value }}"></movcat>
 
                         @endforeach
 
-                        @foreach ($moviesBestDirectors as $key => $value)
-
-                        <period data-date="{{ $key}}">
-
-                            @foreach ($value as $director => $nbMovies)
-                                <data data-director="{{ $director }}" data-nbMovies="{{  $nbMovies }}"></data>
-
-                            @endforeach
-                        </period>
+                            <div id="highcharts-pie" style="width:100%; height:400px;"></div>
 
 
-                        @endforeach
-
-
-                        <div id="area"></div>
-
-
-                    </period>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 

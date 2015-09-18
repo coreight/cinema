@@ -28,7 +28,8 @@ class Categories extends Model
      */
     public function categories()
     {
-        return $categories = DB::table('categories')->get();
+//        return $categories = DB::table('categories')->get();
+            return Categories::all();
     }
 
 
@@ -68,6 +69,15 @@ class Categories extends Model
     return $noMovies;
 }
 
+    /**
+     * Compte le nombre de film par catégorie, envoyée en paramètre
+     * @param $category
+     * @return mixed
+     */
+    public function moviesByCategorie($category)
+    {
+        return Movies::where('categories_id', $category)->count();
+    }
 
 
 }

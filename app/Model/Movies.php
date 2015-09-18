@@ -196,13 +196,16 @@ class Movies extends Model
     public function bestDirectors()
     {
         // Récupération des réalisateurs les plus prolifiques
-        $bestDirectors = DB::select('SELECT directors_id
+        $bestDirectors = DB::select('SELECT directors_id,
+                              CONCAT(directors.firstname," ",directors.lastname) AS name
                               FROM  `directors_movies`
+                              LEFT JOIN directors ON directors.id = directors_movies.directors_id
                               GROUP BY directors_id
                               ORDER BY COUNT( movies_id ) DESC
                               LIMIT 4');
 
         // Enregistrement des réalisateurs dans un tableau
+
         $array = array();
         foreach($bestDirectors as $bestDirector) {
             array_push($array, $bestDirector->directors_id);

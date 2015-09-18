@@ -156,22 +156,13 @@ class DashboardController extends Controller
 
                 $moviesBestDirector = $movies->moviesBestDirectors($bestDirector, $i);
 
+                foreach ($moviesBestDirector as $movie) {
 
-                if (count($moviesBestDirector) == 0) {
-                    $moviesBestDirector = 'fail';
+//                    dump($movie);
+                    $count = count($moviesBestDirector);
+
+                    $array[$i][$movie->directors_id ] = $count;
                 }
-
-//                dump($moviesBestDirector);
-
-
-//                foreach ($moviesBestDirector as $movie) {
-//
-////                  dump($movie);
-//                    $count = count($moviesBestDirector);
-//
-//                    $array[$i][$movie->directors_id ] = $count;
-//
-//              }
 
             }
         }
@@ -181,6 +172,7 @@ class DashboardController extends Controller
             'actorsOrigin' => $actor->actorsorigin(),
             'tranchesAge' => $tranchesAge,
             'nbActors' => $nbActors,
+            'bestDirectors' => $bestDirectors,
             'moviesBestDirectors' => $array
         ];
 
@@ -189,9 +181,35 @@ class DashboardController extends Controller
     }
 
 
+    public function dashboard4()
+    {
+
+        $comments = new Comments();
+        $commentsByCinema = $comments->commentsByCinema();
+        $nbTotalComments = $comments->nbComments();
+
+        $category = new Categories();
+        $categories = $category->categories();
+
+        $nbTotalMovies = Movies::all()->count();
+
+        foreach ($categories as $categorie) {
+            $moviesByCategorie[$categorie->title] = $category->moviesByCategorie($categorie->id);
+        }
+
+        $datas = [
+            'commentsByCinemas' => $commentsByCinema,
+            'nbTotalComments' => $nbTotalComments,
+            'moviesByCategorie' => $moviesByCategorie,
+            'nbTotalMovies' => $nbTotalMovies
+        ];
+
+        // Renvoi de la vue
+        return view('/Pages/dashboard4',$datas);
+    }
+
 
 }
-
 
 
 

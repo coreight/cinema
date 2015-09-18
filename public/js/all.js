@@ -313,122 +313,292 @@ init.push(function () {
     // Bar
     $(document).ready(function() {
 
-        var tab = [];
+        if ($('#chart').length) { // Si la page contient un graphique de ce type
+            var tab = [];
 
-        // Récupération des données depuis la vue
-        $('.data-chart').each(function () {
+            // Récupération des données depuis la vue
+            $('.data-chart').each(function () {
 
-            var city = $(this).attr('data-city');
-            var nb = $(this).attr('data-nb');
+                var city = $(this).attr('data-city');
+                var nb = $(this).attr('data-nb');
 
-            var obj = { city: city , value: nb };
-            tab.push(obj);
+                var obj = {city: city, value: nb};
+                tab.push(obj);
 
-        });
+            });
 
-        new Morris.Bar({
+            new Morris.Bar({
 
-        // ID of the element in which to draw the chart.
-        element: 'chart',
+                // ID of the element in which to draw the chart.
+                element: 'chart',
 
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: tab,
-            // The name of the data record attribute that contains x-values.
-            xkey: 'city',
-            // A list of names of data record attributes that contain y-values.
-            ykeys: ['value'],
-            // Labels for the ykeys -- will be displayed when you hover over the
-            // chart.
-            labels: ['value'],
-            gridTextSize: 9
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: tab,
+                // The name of the data record attribute that contains x-values.
+                xkey: 'city',
+                // A list of names of data record attributes that contain y-values.
+                ykeys: ['value'],
+                // Labels for the ykeys -- will be displayed when you hover over the
+                // chart.
+                labels: ['value'],
+                gridTextSize: 9
 
-        });
-
+            });
+        }
 
     });
 
     // Donut
     $(document).ready(function() {
 
-        var tab = [];
+        if ($('#donut').length) { // Si la page contient un graphique de ce type
 
-        // Récupération des données depuis la vue
-        $('.data-donut').each(function () {
+            var tab = [];
 
-            var tranche = $(this).attr('data-tranche');
-            var value = $(this).attr('data-val');
+            // Récupération des données depuis la vue
+            $('.data-donut').each(function () {
 
-            var obj = { label: tranche+" ans" , value: value };
-            tab.push(obj);
+                var tranche = $(this).attr('data-tranche');
+                var value = $(this).attr('data-val');
 
-        });
+                var obj = {label: tranche + " ans", value: value};
+                tab.push(obj);
 
-        new Morris.Donut({
+            });
 
-            // ID of the element in which to draw the chart.
-            element: 'donut',
+            new Morris.Donut({
 
-            // Chart data records -- each entry in this array corresponds to a point on
-            // the chart.
-            data: tab,
-            formatter: function (y, data) { return y + '%' }
+                // ID of the element in which to draw the chart.
+                element: 'donut',
 
-        });
+                // Chart data records -- each entry in this array corresponds to a point on
+                // the chart.
+                data: tab,
+                formatter: function (y, data) {
+                    return y + '%'
+                }
+
+            });
+        }
     });
 
     // Area
     $(document).ready(function() {
 
-        console.log('chart ready');
+        if ($('#area').length) { // Si la page contient un graphique de ce type
 
-        var tab = [];
+            var tab = [];
 
-        // Récupération des données depuis la vue
-        $('period').each(function () {
+            // Récupération des 4 réalisateurs
+            var d1 = $("[data-num='d1']").attr('data-director');
+            var d2 = $("[data-num='d2']").attr('data-director');
+            var d3 = $("[data-num='d3']").attr('data-director');
+            var d4 = $("[data-num='d4']").attr('data-director');
 
-            var date = $(this).attr('data-date');
+            // Récupération des données depuis la vue
+            $('period').each(function () {
 
-            $('data').each(function () {
-
-                var director = $(this).attr('data-director');
-                var nbMovies = $(this).attr('data-nbMovies');
-
-                console.log(date);
-                console.log(director);
-                console.log(nbMovies);
+                var date = $(this).attr('data-date');
+                var obj = {y: date, a: 0, b: 0, c: 0, d: 0};
 
 
-                //var obj = { label: date , a: d1, b: d2, c:d3, d:d4};
-                //tab.push(obj);
+                $(this).children('data').each(function () {
 
+                    var director = $(this).attr('data-director');
+                    var nbMovies = $(this).attr('data-nbMovies');
+
+                    //console.log(date);
+                    //console.log(director);
+                    //console.log(nbMovies);
+
+
+                    if (director == d1) {
+                        obj.a = nbMovies;
+                    } else if (director == d2) {
+                        obj.b = nbMovies;
+
+                    } else if (director == d3) {
+                        obj.c = nbMovies;
+
+                    } else if (director == d4) {
+                        obj.d = nbMovies;
+
+                    }
+                });
+                //var obj = { y: date , a: d1, b: d2, c:d3, d:d4 };
+                tab.push(obj);
+            });
+            //console.log(tab);
+
+            new Morris.Area({
+                element: 'area',
+                data: tab,
+                xkey: 'y',
+                ykeys: ['a', 'b', 'c', 'd'],
+                labels: [d1, d2, d3, d4]
+            });
+        }
+
+    });
+
+    // Graphiques avancés avec Highcharts
+
+    $(document).ready(function() {
+
+
+        // Récupération du nb total de commentaires
+        var nbTotalComments = $('comments').attr('nbtotal');
+
+        var cineArray = [];
+        var nbArray = [];
+        var array = [];
+
+
+        // Récupération des données des cinémas depuis les éléments HTML5
+        $('cine').each(function () {
+            var cinema = $(this).attr('title');
+            var nb = Math.round($(this).attr('nb')/nbTotalComments*100);
+
+            cineArray.push(cinema);
+            nbArray.push({
+                name: cinema,
+                y: nb,
+                drilldown: cinema
             });
 
-        });
 
-        new Morris.Area({
-            element: 'area',
-            data: [
-                { y: '2006', a: 100, b: 90 },
-                { y: '2007', a: 75,  b: 65 },
-                { y: '2008', a: 50,  b: 40 },
-                { y: '2009', a: 75,  b: 65 },
-                { y: '2010', a: 50,  b: 40 },
-                { y: '2011', a: 75,  b: 65 },
-                { y: '2012', a: 100, b: 90 }
-            ],
-            xkey: 'y',
-            ykeys: ['a', 'b'],
-            labels: ['Series A', 'Series B']
-        });
+            // Récupération des données des films pour chaque cinéma depuis les éléments HTML5
+            var movieArray = [];
+            var nbMovieArray = [];
+            var movieData = [];
+            $(this).children('movie').each(function(){
+                var movie = $(this).attr('title');
+                var nbMovie = Math.round($(this).attr('nb')/nbTotalComments*100);
 
+                //movieArray.push(movie);
+                //nbMovieArray.push(nbMovie);
+                movieData.push([movie, nbMovie]);
+            });
+            //console.log(movieArray);
+            //console.log(nbMovieArray);
+
+            // Stockage des films de chaque cinéma dans un grand tableau récapitulatif
+            array.push({
+                name: cinema,
+                id: cinema,
+                data: movieData
+            })
+
+        });
+        console.log(nbArray);
+        console.log(array);
+
+
+
+
+        // Création du graphique
+        $('#highcharts').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: '% des commentaires pour tous les films'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+            series: [{
+                name: '% des commentaires',
+                colorByPoint: true,
+                data: nbArray
+            }],
+            drilldown: {
+                series: array
+            }
+        });
+    });
+
+    // Highcharts pie
+    $(document).ready(function() {
+
+
+        var nbMovies = $('nbmovies').attr('nb');
+
+        // Récupération des données HTM
+        array = [];
+
+        $('movcat').each(function () {
+
+            var category = $(this).attr('category');
+            var nb = Math.round(parseInt($(this).attr('nb'))*100/nbMovies);
+            array.push({
+                name: category,
+                y: nb
+            })
+
+        });
+        console.log(array);
+
+            // Création du graphique
+        $('#highcharts-pie').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: "Brands",
+                colorByPoint: true,
+                data: array
+            }]
+        });
 
     });
 
 
 
 
-    /* Liste de tâches */
+
+
+        /* Liste de tâches */
     $('.widget-tasks .panel-body').pixelTasks().sortable({
         axis: "y",
         handle: ".task-sort-icon",

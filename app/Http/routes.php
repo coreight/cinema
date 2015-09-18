@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
     Route::get('/dashboard2', ['uses' => 'DashboardController@dashboard2', 'as' => 'dashboard2']);
     Route::get('/dashboard3', ['uses' => 'DashboardController@dashboard3', 'as' => 'dashboard3']);
+    Route::get('/dashboard4', ['uses' => 'DashboardController@dashboard4', 'as' => 'dashboard4']);
 
 
     # ADMIN
