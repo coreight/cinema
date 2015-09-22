@@ -10,10 +10,12 @@ use App\Model\Comments;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use App\Http\Requests\MoviesRequest;
 use App\Http\Requests\MoviesQuickRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent;
-
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class MoviesController
@@ -31,6 +33,10 @@ class MoviesController extends Controller
      */
     public function index(Request $request)
     {
+
+        if (Gate::denies('superadmin')){
+            abort(403);
+        }
 
         // Récupèration des valeurs du formulaire
         $boAll = $request->input('boAll');
@@ -65,6 +71,9 @@ class MoviesController extends Controller
      */
     public function create()
     {
+
+
+
         $categories = new Categories();
         $actors = new Actors();
         $directors = new Directors();
@@ -101,6 +110,7 @@ class MoviesController extends Controller
         $movie->note_presse = $request->note_presse;
         $movie->visible = $request->visible;
         $movie->cover = $request->cover;
+        $movie->administrators_id = Auth::user()->id;
 
 
         /* Traitement de l'upload d'image */
@@ -207,6 +217,14 @@ class MoviesController extends Controller
      */
     public function delete($id)
     {
+
+        // Vérification de l'autorisation de l'administrateur
+        $movie = Movies::find($id);
+        if (Gate::denies('hasmovie', $movie)){
+            abort(403);
+        }
+
+
         // Cas où il y a plusieurs films à supprimer
         if(is_array($id)) {
 

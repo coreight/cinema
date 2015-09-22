@@ -242,6 +242,71 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="stat-panel widget-support-tickets" id="dashboard-support-tickets">
+                <div class="stat-row">
+                    <!-- Dark gray background, small padding, extra small text, semibold text -->
+                    <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
+                        <i class="fa fa-globe"></i>&nbsp;&nbsp;R&eacute;partitions des films par catégorie
+                    </div>
+                </div> <!-- /.stat-row -->
+                <div class="panel-body tab-content-padding">
+                    <div class="panel-padding no-padding-vr">
+
+                        <div id="pie3D" data-url="{{ url('admin/api/nb-movies-by-categorie') }}" id="hero-area" class="graph" style="position: relative;">
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="stat-panel widget-support-tickets" id="dashboard-support-tickets">
+                <div class="stat-row">
+                    <!-- Dark gray background, small padding, extra small text, semibold text -->
+                    <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
+                        <i class="fa fa-globe"></i>&nbsp;&nbsp;R&eacute;partitions des catégories pour les 5 meilleurs acteurs
+                    </div>
+                </div> <!-- /.stat-row -->
+                <div class="panel-body tab-content-padding">
+                    <div class="panel-padding no-padding-vr">
+
+                        <div id="stackedBar" data-url="{{ url('admin/api/nb-movies-by-categorie') }}" id="hero-area" class="graph" style="position: relative;">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="stat-panel widget-support-tickets" id="dashboard-support-tickets">
+                <div class="stat-row">
+                    <!-- Dark gray background, small padding, extra small text, semibold text -->
+                    <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
+                        <i class="fa fa-globe"></i>&nbsp;&nbsp;R&eacute;partition du nombre de s&eacute;ances par mois
+                    </div>
+                </div> <!-- /.stat-row -->
+                <div class="panel-body tab-content-padding">
+                    <div class="panel-padding no-padding-vr">
+
+                        <div id="bar3D" data-url="{{ url('admin/api/nb-sessions-by-month') }}" id="hero-area" class="graph" style="position: relative;">
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

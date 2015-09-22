@@ -61,5 +61,23 @@ class Actors extends Model
         return $array;
     }
 
+    /**
+     * Retourne les 5 "meilleurs" acteurs, c'est à dire ceux ayant le plus de films
+     * @return mixed
+     */
+    public function bestActors()
+    {
+        return DB::table('actors_movies')
+                ->select(DB::raw('count(movies_id ) AS nb'),'actors.id',
+                        DB::raw('CONCAT( actors.firstname,  " ", actors.lastname ) AS fullname'))
+                ->join('actors', 'actors.id', '=', 'actors_movies.actors_id')
+                ->groupBy('actors_id')
+                ->orderBy('nb', 'desc')
+                ->take(5)
+                ->get();
+
+
+    }
+
 
 }

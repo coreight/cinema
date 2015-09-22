@@ -117,12 +117,13 @@
                         <div id="area"></div>
 
 
-                    </period>
                 </div>
             </div>
         </div>
     </div>
 
+    {{-- Test ApiController => transmission des données en JSON plutôt que HTML5 --}}
+    <div data-url="{{ url('admin/api/best-directors')}}" id="api"></div>
 
 
 

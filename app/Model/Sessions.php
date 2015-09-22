@@ -42,4 +42,15 @@ class Sessions extends Model
         return $query->where('date_session', '>', $current)->orderBy('date_session');
     }
 
+    public function sessionsByMonth()
+    {
+        return DB::table('sessions')
+                    ->select(DB::raw('DATE_FORMAT( date_session,  "%M" ) AS mois'),
+                            DB::raw('COUNT( DATE_FORMAT( date_session,  "%M" )) AS nb'))
+                    ->groupBy(DB::raw('DATE_FORMAT( date_session,  "%m" )'))
+                    ->orderBy(DB::raw('DATE_FORMAT( date_session,  "%m" )'))
+                    ->get();
+    }
+
+
 }

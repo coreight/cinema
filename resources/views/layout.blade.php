@@ -71,6 +71,7 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/data.js"></script>
     <script src="http://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="http://code.highcharts.com/highcharts-3d.js"></script>
 
 
     <!-- Pixel Admin's js -->

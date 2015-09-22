@@ -22,6 +22,10 @@ Route::controllers([
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
+    // Import implicite
+    Route::controller('api', 'ApiController');
+
+
     # HOME
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
     Route::get('/dashboard2', ['uses' => 'DashboardController@dashboard2', 'as' => 'dashboard2']);

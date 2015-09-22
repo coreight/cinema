@@ -10,7 +10,7 @@ init.push(function () {
 
     /* Checkbox avec enregistrement live (ajax) et confirmation */
 
-    $('#visible :checkbox').on('click', function() {
+    $('#visible :checkbox').on('click', function () {
 
         var id = $(this).parents('td').attr('data-id');
 
@@ -43,21 +43,21 @@ init.push(function () {
     });
 
     /* Boutons désactivés */
-    $('#radio-group').children().change(function() {
-             $('#bo').toggleClass("hide");
+    $('#radio-group').children().change(function () {
+        $('#bo').toggleClass("hide");
 
     });
 
     /* Boutons des modal box lorsque plusieurs éléments sélectionnés */
-    $('#tableau-submit').on('click', function() {
+    $('#tableau-submit').on('click', function () {
 
-        $('#id :checkbox').each(function() {
-           console.log($(this).attr('value'));
+        $('#id :checkbox').each(function () {
+            console.log($(this).attr('value'));
         });
     });
 
     /* Editeur WYSIWYG */
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#summernote').summernote({
             height: 200
         });
@@ -77,22 +77,22 @@ init.push(function () {
         showSeconds: false,
         showMeridian: false,
         showInputs: false,
-        orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
+        orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}
     }
     $('#timepicker').timepicker(options);
 
 
     /* jquery validator */
     /*
-    $('#form-validate').validate({
-        rules: {
-            firstname: {
-                required: true,
-                minlength: 2
-            }
-        }
-    });
-    */
+     $('#form-validate').validate({
+     rules: {
+     firstname: {
+     required: true,
+     minlength: 2
+     }
+     }
+     });
+     */
 
     /* upload de fichiers */
     $('#image').pixelFileInput(
@@ -111,34 +111,34 @@ init.push(function () {
     });
 
     /* Limite du nb de caractères */
-    $("#synopsis").limiter(200, { label: '#synopsis-limit-label' });
-    $("#register-description").limiter(160, { label: '#register-limit-label' });
+    $("#synopsis").limiter(200, {label: '#synopsis-limit-label'});
+    $("#register-description").limiter(160, {label: '#register-limit-label'});
 
 
     /* Sliders */
 
     $('#duree-slider').slider({
-        range : "min",
+        range: "min",
         min: 0,
         max: 6,
         value: 1,
-        slide: function( event, ui ) {
-            $( "#duree" ).val( ui.value );
+        slide: function (event, ui) {
+            $("#duree").val(ui.value);
         }
     });
 
-    $( "#duree" ).val( $( "#duree-slider" ).slider( "value" ) );
+    $("#duree").val($("#duree-slider").slider("value"));
 
     $('#budget-slider').slider({
-        range : "min",
+        range: "min",
         min: 0,
         max: 1000000000,
         value: 10,
-        slide: function( event, ui ) {
-            $( "#budget" ).val( ui.value );
+        slide: function (event, ui) {
+            $("#budget").val(ui.value);
         }
     });
-    $( "#budget" ).val( $( "#budget-slider" ).slider( "value" ) );
+    $("#budget").val($("#budget-slider").slider("value"));
 
 
     /* Charts */
@@ -151,7 +151,7 @@ init.push(function () {
 
 
     // Bar
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         if ($('#chart').length) { // Si la page contient un graphique de ce type
             var tab = [];
@@ -190,7 +190,7 @@ init.push(function () {
     });
 
     // Donut
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         if ($('#donut').length) { // Si la page contient un graphique de ce type
 
@@ -224,7 +224,7 @@ init.push(function () {
     });
 
     // Area
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         if ($('#area').length) { // Si la page contient un graphique de ce type
 
@@ -284,7 +284,7 @@ init.push(function () {
 
     // Graphiques avancés avec Highcharts
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
         // Récupération du nb total de commentaires
@@ -298,7 +298,7 @@ init.push(function () {
         // Récupération des données des cinémas depuis les éléments HTML5
         $('cine').each(function () {
             var cinema = $(this).attr('title');
-            var nb = Math.round($(this).attr('nb')/nbTotalComments*100);
+            var nb = Math.round($(this).attr('nb') / nbTotalComments * 100);
 
             cineArray.push(cinema);
             nbArray.push({
@@ -312,9 +312,9 @@ init.push(function () {
             var movieArray = [];
             var nbMovieArray = [];
             var movieData = [];
-            $(this).children('movie').each(function(){
+            $(this).children('movie').each(function () {
                 var movie = $(this).attr('title');
-                var nbMovie = Math.round($(this).attr('nb')/nbTotalComments*100);
+                var nbMovie = Math.round($(this).attr('nb') / nbTotalComments * 100);
 
                 //movieArray.push(movie);
                 //nbMovieArray.push(nbMovie);
@@ -333,8 +333,6 @@ init.push(function () {
         });
         console.log(nbArray);
         console.log(array);
-
-
 
 
         // Création du graphique
@@ -377,7 +375,7 @@ init.push(function () {
     });
 
     // Highcharts pie
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
         var nbMovies = $('nbmovies').attr('nb');
@@ -388,7 +386,7 @@ init.push(function () {
         $('movcat').each(function () {
 
             var category = $(this).attr('category');
-            var nb = Math.round(parseInt($(this).attr('nb'))*100/nbMovies);
+            var nb = Math.round(parseInt($(this).attr('nb')) * 100 / nbMovies);
             array.push({
                 name: category,
                 y: nb
@@ -397,7 +395,7 @@ init.push(function () {
         });
         console.log(array);
 
-            // Création du graphique
+        // Création du graphique
         $('#highcharts-pie').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -434,18 +432,14 @@ init.push(function () {
     });
 
 
-
-
-
-
-        /* Liste de tâches */
+    /* Liste de tâches */
     $('.widget-tasks .panel-body').pixelTasks().sortable({
         axis: "y",
         handle: ".task-sort-icon",
-        stop: function( event, ui ) {
+        stop: function (event, ui) {
             // IE doesn't register the blur when sorting
             // so trigger focusout handlers to remove .ui-state-focus
-            ui.item.children( ".task-sort-icon" ).triggerHandler( "focusout" );
+            ui.item.children(".task-sort-icon").triggerHandler("focusout");
         }
     });
     $('#clear-completed-tasks').click(function () {
@@ -453,4 +447,211 @@ init.push(function () {
     });
 
 
+    // Test récupération des données en JSON plutôt que avec éléments HTML5
+    //$.getJSON( $('#api').data('url'), function(data) {
+    //
+    //   var items = [];
+    //    $.each(data, function(key, val){
+    //       items.push(val.firstname);
+    //    });
+    //    console.log(items);
+    //});
+
+
+    // Graph répartition des films par catégorie, via JSON
+    $.getJSON($('#pie3D').data('url'), function (data) {
+
+        // récupération des données JSON
+        var items = [];
+        $.each(data, function (key, val) {
+            items.push([val.title, parseInt(val.nb)]);
+        });
+        //console.log(items);
+
+        // Construction du graphique Highcharts
+        $('#pie3D').highcharts({
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.title}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '',
+                data: items
+            }]
+        });
+
+    });
+
+
+
+    // Graph répartition des films par catégorie, via JSON
+    $.getJSON($('#stackedBar').data('url'), function (data) {
+
+        console.log('json ready');
+
+        // récupération des données JSON
+        //$.each(data, function (key, val) {
+            console.log(val);
+        //});
+
+        // A FINIR
+
+
+        // Construction du graphique Highcharts
+        $('#stackedBar').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Stacked column chart'
+            },
+            xAxis: {
+                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 3px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'John',
+                data: [5, 3, 4, 7, 2]
+            }, {
+                name: 'Jane',
+                data: [2, 2, 3, 2, 1]
+            }, {
+                name: 'Joe',
+                data: [3, 4, 4, 2, 5]
+            }]
+        });
+
+    });
+
+    // Graph répartition des sessions par mois, via JSON
+    $.getJSON($('#bar3D').data('url'), function (data) {
+
+        // récupération des données JSON
+        var month = [];
+        var nb = [];
+        $.each(data, function (key, val) {
+            month.push(val.mois);
+            nb.push(parseInt(val.nb));
+        });
+
+
+        // Construction du graphique Highcharts
+        $('#bar3D').highcharts({
+            chart: {
+                type: 'column',
+                margin: 75,
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+            xAxis: {
+                categories: month
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            series: [{
+                name: 'Nombre de séances',
+                data: nb
+            }]
+        });
+
+
+    });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

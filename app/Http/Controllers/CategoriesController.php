@@ -6,6 +6,8 @@ use App\Model\Categories;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CategoriesRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class CategoriesController
@@ -23,6 +25,11 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+
+        if (Gate::denies('superadmin')){
+            abort(403);
+        }
+
         $datas = [
             'categories' => Categories::all()
         ];
@@ -53,6 +60,8 @@ class CategoriesController extends Controller
         $categorie->title = $request->title;
         $categorie->description = $request->description;
         $categorie->slug = $request->slug;
+        $categorie->administrators_id = Auth::user()->id;
+
 
         /* Traitement de l'upload d'image */
         $filename = "";
@@ -98,6 +107,8 @@ class CategoriesController extends Controller
      */
     public function delete($id)
     {
+
+
         if(is_array($id)){
 
         } else {

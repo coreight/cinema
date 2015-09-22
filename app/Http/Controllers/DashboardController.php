@@ -14,6 +14,7 @@ use App\Model\Sessions;
 use App\Model\Tasks;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 
 /**
@@ -22,9 +23,18 @@ use Carbon\Carbon;
  */
 class DashboardController extends Controller
 {
-
+    /**
+     * Affichage du dashboard
+     * @return \Illuminate\View\View
+     */
     public function dashboard()
     {
+        // Vérification de l'autorisation de l'administrateur
+        if (Gate::denies('notExpired')){
+            abort(403);
+        }
+
+
         $actor = new Actors();
         $movie = new Movies();
         $categorie = new Categories();
@@ -58,6 +68,7 @@ class DashboardController extends Controller
 
             $delaiNextSessions[$session->id] = array('delai' => $delai, 'color' => $color);
         }
+
 
         $datas = [
             'dob' => $actor->actorsAge(),

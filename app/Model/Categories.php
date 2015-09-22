@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+
 /**
  * Class Categories représentant la table categories
  * @package app\Model
@@ -32,8 +33,11 @@ class Categories extends Model
             return Categories::all();
     }
 
-
-    public function popular()
+    /**
+     * Retourne la ou les catégorie(s) ayant le plus de films
+     * @return mixed
+     */
+    public function popular($limit = 1)
     {
         $popular = DB::select('
               SELECT categories.title as title, COUNT( categories_id ) as nb_films
@@ -41,11 +45,22 @@ class Categories extends Model
               LEFT JOIN categories ON movies.categories_id = categories.id
               GROUP BY categories_id
               ORDER BY COUNT( categories_id ) DESC
-              LIMIT 1');
+              LIMIT '.$limit);
         return $popular;
 
     }
 
+    public function budgets()
+    {
+        // Pour retourner les budgets par mois de la catégorie passée en paramètre
+    }
+
+
+
+    /**
+     * Retourne la catégorie ayant le plus gros budget
+     * @return mixed
+     */
     public function bigBudget()
     {
         $bigBudget = DB::select('
@@ -78,6 +93,48 @@ class Categories extends Model
     {
         return Movies::where('categories_id', $category)->count();
     }
+
+    public function moviesByCategories()
+    {
+        return DB::table('movies')
+                    ->select(DB::raw('count(movies.id ) AS nb'), 'categories.title AS title')
+                    ->join('categories', 'categories.id', '=', 'movies.categories_id')
+                    ->groupBy('categories_id')
+                    ->get();
+    }
+
+    /**
+     * Catégories de films de l'acteur passé en paramètre
+     * @param array $actor
+     * @return mixed
+     */
+    public function categoriesByActor($actor = [2,3])
+    {
+        return DB::table('movies')
+                    ->select(DB::raw('count( categories_id ) AS nb'), 'categories.id AS id', 'categories.title AS title')
+                    ->join('categories', 'categories.id', '=', 'movies.categories_id')
+                    ->join('actors_movies', 'actors_movies.movies_id', '=', 'movies.id')
+                    ->join('actors', 'actors.id', '=', 'actors_movies.actors_id')
+                    ->whereIn('actors.id', $actor)
+                    ->groupBy('categories_id')
+                    ->get();
+    }
+
+    public function categorieByActor($categorie, $actor)
+    {
+        return DB::table('movies')
+            ->select(DB::raw('count( categories_id ) AS nb'), 'categories.id AS catId',  'categories.title AS title')
+            ->join('categories', 'categories.id', '=', 'movies.categories_id')
+            ->join('actors_movies', 'actors_movies.movies_id', '=', 'movies.id')
+            ->join('actors', 'actors.id', '=', 'actors_movies.actors_id')
+            ->where('categories.id', $categorie)
+            ->where('actors.id', $actor)
+            ->groupBy('categories_id')
+            ->get();
+    }
+
+
+
 
 
 }
