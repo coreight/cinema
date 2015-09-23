@@ -275,7 +275,7 @@
                 <div class="panel-body tab-content-padding">
                     <div class="panel-padding no-padding-vr">
 
-                        <div id="stackedBar" data-url="{{ url('admin/api/nb-movies-by-categorie') }}" id="hero-area" class="graph" style="position: relative;">
+                        <div id="stackedBar" data-url="{{ url('admin/api/categories-best-actors') }}" id="hero-area" class="graph" style="position: relative;">
                         </div>
 
 

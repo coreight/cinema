@@ -134,6 +134,41 @@ $(document).ready(function() {
     });
 
 
+    // Ajout en favoris
+    $(".fav").click(function(e){
+        //console.log('switch');
+
+        // On stocke l'élément courant pour pouvoir le réutiliser ensuite
+        var elt = $(this);
+
+        if ($(this).is(':checked')) {
+            console.log('checked');
+
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id: elt.data('id'), action: "add", _token: elt.data('token')}
+
+            }).done(function(){
+                console.log(elt.data('id')+" en favoris");
+            });
+
+        } else {
+            console.log('not checked');
+
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id: elt.data('id'), action: "remove", _token: elt.data('token')}
+
+            }).done(function(){
+                console.log(elt.data('id')+" plus en favoris");
+            });
+        }
+
+    })
 
 
 

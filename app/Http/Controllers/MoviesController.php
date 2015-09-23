@@ -374,4 +374,33 @@ class MoviesController extends Controller
     {
         return view('Movies/search', ['lang' => $lang, 'visibility' => $visibility, 'length' => $length]);
     }
+
+    public function favoris(Request $request)
+    {
+        dump($request->input('id'),$request->input('action'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

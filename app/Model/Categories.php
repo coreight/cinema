@@ -50,9 +50,18 @@ class Categories extends Model
 
     }
 
-    public function budgets()
+    /**
+     * Retourne les budgets par mois de la catégorie passée en paramètre
+     */
+    public function budgetsByCategorie($category)
     {
-        // Pour retourner les budgets par mois de la catégorie passée en paramètre
+        return DB::table('movies')
+            ->select(DB::raw('SUM(budget) AS budget'),
+                DB::raw('DATE_FORMAT( date_release,  "%M" ) AS mois'),
+                DB::raw('DATE_FORMAT( date_release,  "%m" ) AS numMois'))
+            ->where('categories_id', '=', $category)
+            ->groupBy('mois')
+            ->get();
     }
 
 
@@ -94,12 +103,17 @@ class Categories extends Model
         return Movies::where('categories_id', $category)->count();
     }
 
+    /**
+     * Retourne le nombre de films pour chaque catégorie
+     * @return mixed
+     */
     public function moviesByCategories()
     {
         return DB::table('movies')
-                    ->select(DB::raw('count(movies.id ) AS nb'), 'categories.title AS title')
+                    ->select(DB::raw('count(movies.id ) AS nb'), 'categories.title AS title', 'categories.id AS id')
                     ->join('categories', 'categories.id', '=', 'movies.categories_id')
                     ->groupBy('categories_id')
+                    ->orderBy('nb', 'DESC')
                     ->get();
     }
 

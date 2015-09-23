@@ -155,6 +155,7 @@
                     <th>Durée</th>
                     <th>BO</th>
                     <th>Visible</th>
+                    <th>Favoris</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -181,6 +182,15 @@
                         <td id="visible" data-id="{{ $movie->id  }}">
 
                         {!! Form::checkbox('active', $movie->id, $movie->visible,  ['id' => $movie->id]) !!}
+                        </td>
+                        <td>
+                            <div id="switchers-colors-square" class="form-group-margin">
+                                <input
+                                        data-token="{{ csrf_token() }}"
+                                        data-id="{{  $movie->id }}"
+                                        data-url="{{  route("movies.favoris") }}"
+                                        type="checkbox" data-class="switcher-warning" class="fav" checked="checked">&nbsp;&nbsp;
+                            </div>
                         </td>
                         <td>
                             <button class="btn btn-flat btn-sm btn-labeled btn-actions">

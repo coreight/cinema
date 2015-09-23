@@ -85,6 +85,18 @@ return [
             'prefix'   => '',
         ],
 
+        'mongodb' => array(
+            'driver'   => 'mongodb',
+            'host'     => 'localhost',
+            'port'     => 27017,
+            'database' => 'Laravel',
+            'username' => '',
+            'password' => '',
+            'options' => array(
+                'db' => 'Laravel'
+            )
+        ),
+
     ],
 
     /*

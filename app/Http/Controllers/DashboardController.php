@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Actors;
 use App\Model\Comments;
 use App\Model\Directors;
+use App\Model\Messages;
 use App\Model\Movies;
 use App\Model\Categories;
 use App\Model\Cinemas;
@@ -15,7 +16,8 @@ use App\Model\Tasks;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DashboardController
@@ -110,18 +112,34 @@ class DashboardController extends Controller
         // Tâches
         $tasks = Tasks::all();
 
+        // Chat, messages stockés en MongoDB
+
+
+
+        $messages = Messages::all();
 
         $datas = [
             'cinemas' => $cinemas,
             'recommandations' => $recommandations,
             'users' => $users,
             'tasks' => $tasks,
-
+            'messages' => $messages
         ];
 
         return view('/Pages/dashboard2',$datas);
 
     }
+
+    public function createmessage(Request $request)
+    {
+        $message = new Messages();
+        $message->user = Auth::user()->toArray();
+        $message->content = $request->input('content');
+        $message->save();
+
+//        return response()->json($message->user['name']);
+    }
+
 
     public function dashboard3()
     {

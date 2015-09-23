@@ -34,6 +34,9 @@
                 <div class="panel-body tab-content-padding">
                     <div class="panel-padding no-padding-vr">
 
+                        <div id="area" data-url="{{ url('admin/api/budget-best-categories') }}" id="hero-area" class="graph" style="position: relative;">
+                        </div>
+
 
                     </div>
                 </div>
@@ -111,6 +114,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="stat-panel widget-support-tickets" id="dashboard-support-tickets">
+                <div class="stat-row">
+                    <!-- Dark gray background, small padding, extra small text, semibold text -->
+                    <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
+                        <i class="fa fa-pencil"></i>&nbsp;&nbsp;Historique du budget total par cat&eacute;gorie
+                    </div>
+                </div> <!-- /.stat-row -->
+                <div class="panel-body tab-content-padding">
+                    <div class="panel-padding no-padding-vr">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

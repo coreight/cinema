@@ -38,8 +38,10 @@ class ApiController extends Controller
         // On récupère les 5 "meilleurs" acteurs, et on pousse leur ids dans un tableau
         $bestActors = $actor->bestActors();
         $actorsIds = [];
+        $actorsNames = [];
         foreach ($bestActors as $bestActor) {
             array_push($actorsIds, $bestActor->id);
+            array_push($actorsNames, $bestActor->fullname);
         }
 
         // On récupère les catégories des films de chaque acteur
@@ -52,7 +54,7 @@ class ApiController extends Controller
         $array = [];
 
         foreach ($categories as $categorie) {
-//            dump($categorie);
+
             array_push($cat, $categorie->title);
 
             $data = [];
@@ -60,7 +62,7 @@ class ApiController extends Controller
             foreach ($bestActors as $bestActor) {
 
                 $categorieByActor = $category->categorieByActor($categorie->id, $bestActor->id);
-//                dump($categorieByActor);
+
 
                 if (count($categorieByActor) == 0) {
                     $categorieNbByActor = 0;
@@ -71,13 +73,12 @@ class ApiController extends Controller
                 array_push($data, $categorieNbByActor);
             }
             array_push($array, $data);
-//            dump($array);
+
 
         }
         array_push($series, $array);
-//        dump($series);
 
-        return array('series' => $series, 'categories' => $cat);
+        return array('series' => $series, 'categories' => $cat, 'actors' => $actorsNames);
 
 
     }
@@ -90,6 +91,34 @@ class ApiController extends Controller
         return response()->json($nbSessionsByMonth);
 
     }
+
+    public function getBudgetBestCategories()
+    {
+        // Récupération des 4 "meilleurs" catégories (= ayant le plus de films)
+        $category = new Categories();
+        $bestCategories = array_slice($category->moviesByCategories(),0, 4);
+
+        foreach ($bestCategories as $bestCategorie) {
+            $budgetsByCategorie =  $category->budgetsByCategorie($bestCategorie->id);
+
+            // Initialisation d'un tableau vide formaté
+            for ($i = 1; $i <= 12; $i++) {
+                $data[$bestCategorie->title][$i] = 0;
+            }
+
+            foreach ($budgetsByCategorie as $budgetsByMonth) {
+
+                      $data[$bestCategorie->title][intval($budgetsByMonth->numMois)] = intval($budgetsByMonth->budget);
+            }
+
+        }
+
+        return $data;
+
+    }
+
+
+
 
 
 

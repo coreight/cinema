@@ -88,10 +88,9 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6">
-            <div class="panel widget-tasks panel-dark-gray">
+            <div class="panel widget-tasks  panel-dark-gray">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Recent tasks</span>
                     <div class="panel-heading-controls">
@@ -132,11 +131,46 @@
                 </div> <!-- / .panel-body -->
             </div> <!-- / .panel -->
         </div>
+
+        <div class="col-md-6">
+            <div class="panel widget-chat panel-dark-gray">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>Chat</span>
+                </div> <!-- / .panel-heading -->
+                <div class="panel-body">
+
+
+
+                    @foreach ($messages as $message)
+                    <div class="message">
+                        <img src="assets/demo/avatars/5.jpg" alt="" class="message-avatar">
+                        <div class="message-body">
+                            <div class="message-heading">
+                                <a href="#" title="">{{ $message['user']['name'] }}</a> says:
+                                <span class="pull-right">
+
+                                    {{ \Carbon\Carbon::createFromTimestamp(strtotime($message->created_at))->diffForHumans() }}
+                                </span>
+                            </div>
+                            <div class="message-text">
+                                {{ $message['content'] }}
+                            </div>
+                        </div> <!-- / .message-body -->
+                    </div>  <!-- / .message -->
+                    @endforeach
+
+
+                </div> <!-- / .panel-body -->
+                <form action="{{ route('messages.create') }}" method="post" class="panel-footer chat-controls">
+                    {!! csrf_field() !!}
+                    <div class="chat-controls-input">
+                        <textarea name="content" rows="1" class="form-control"></textarea>
+                    </div>
+                    <button class="btn btn-primary chat-controls-btn">Send</button>
+                </form> <!-- / .panel-footer -->
+            </div> <!-- / .panel -->
+        </div>
     </div>
-
-
-
-
 
 
 @endsection

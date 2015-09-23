@@ -134,6 +134,41 @@ $(document).ready(function() {
     });
 
 
+    // Ajout en favoris
+    $(".fav").click(function(e){
+        //console.log('switch');
+
+        // On stocke l'élément courant pour pouvoir le réutiliser ensuite
+        var elt = $(this);
+
+        if ($(this).is(':checked')) {
+            console.log('checked');
+
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id: elt.data('id'), action: "add", _token: elt.data('token')}
+
+            }).done(function(){
+                console.log(elt.data('id')+" en favoris");
+            });
+
+        } else {
+            console.log('not checked');
+
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id: elt.data('id'), action: "remove", _token: elt.data('token')}
+
+            }).done(function(){
+                console.log(elt.data('id')+" plus en favoris");
+            });
+        }
+
+    })
 
 
 
@@ -160,6 +195,11 @@ $(document).ready(function() {
 
 
 init.push(function () {
+
+    /* Autosize */
+    $(".chat-controls-input .form-control").autosize();
+
+
 
     /* Tableaux */
 
@@ -212,7 +252,7 @@ init.push(function () {
     $('#tableau-submit').on('click', function () {
 
         $('#id :checkbox').each(function () {
-            console.log($(this).attr('value'));
+            //console.log($(this).attr('value'));
         });
     });
 
@@ -299,6 +339,15 @@ init.push(function () {
         }
     });
     $("#budget").val($("#budget-slider").slider("value"));
+
+
+    /* Switchers */
+    $('#switchers-colors-square > input').switcher({
+        theme: 'square',
+        on_state_content: '<span class="btn-label icon fa fa-star"></span>',
+        off_state_content: '<span class="btn-label icon fa fa-star-o"></span>'
+    });
+
 
 
     /* Charts */
@@ -491,8 +540,8 @@ init.push(function () {
             })
 
         });
-        console.log(nbArray);
-        console.log(array);
+        //console.log(nbArray);
+        //console.log(array);
 
 
         // Création du graphique
@@ -553,7 +602,7 @@ init.push(function () {
             })
 
         });
-        console.log(array);
+        //console.log(array);
 
         // Création du graphique
         $('#highcharts-pie').highcharts({
@@ -567,7 +616,7 @@ init.push(function () {
                 text: ''
             },
             tooltip: {
-                pointFormat: '{series.name}'
+                pointFormat: '<b>{point.name}</b>: {point.percentage:.1f} %'
             },
             plotOptions: {
                 pie: {
@@ -575,7 +624,7 @@ init.push(function () {
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        format: '<b>{point.name}</b>',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
@@ -583,7 +632,7 @@ init.push(function () {
                 }
             },
             series: [{
-                name: "Brands",
+                name: "",
                 colorByPoint: true,
                 data: array
             }]
@@ -669,12 +718,28 @@ init.push(function () {
     // Graph répartition des films par catégorie, via JSON
     $.getJSON($('#stackedBar').data('url'), function (data) {
 
-        console.log('json ready');
+        //console.log('json ready');
 
         // récupération des données JSON
-        //$.each(data, function (key, val) {
-            console.log(data);
+        var categories = data.categories;
+        var value = data.series['0'];
+        var actors = data.actors;
+
+
+        //console.log(value);
+
+        var tab = [];
+        //$.each(value, function (key, val) {
+            //console.log(val);
+
+            for (var i =0; i < value.length; i++) {
+                var obj = {name:actors[i], data:value[i]};
+                //console.log(obj);
+                tab.push(obj);
+            }
         //});
+        //console.log(tab);
+
 
         // Construction du graphique Highcharts
         $('#stackedBar').highcharts({
@@ -682,18 +747,18 @@ init.push(function () {
                 type: 'column'
             },
             title: {
-                text: 'Stacked column chart'
+                text: ''
             },
             xAxis: {
-                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                categories: categories
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Total fruit consumption'
+                    text: 'Nb de films'
                 },
                 stackLabels: {
-                    enabled: true,
+                    enabled: false,
                     style: {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -702,9 +767,9 @@ init.push(function () {
             },
             legend: {
                 align: 'right',
-                x: -30,
+                x: -10,
                 verticalAlign: 'top',
-                y: 25,
+                y: 5,
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
@@ -722,7 +787,7 @@ init.push(function () {
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true,
+                        enabled: false,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                         style: {
                             textShadow: '0 0 3px black'
@@ -730,16 +795,7 @@ init.push(function () {
                     }
                 }
             },
-            series: [{
-                name: 'John',
-                data: [5, 3, 4, 7, 2]
-            }, {
-                name: 'Jane',
-                data: [2, 2, 3, 2, 1]
-            }, {
-                name: 'Joe',
-                data: [3, 4, 4, 2, 5]
-            }]
+            series: tab
         });
 
     });
@@ -793,6 +849,68 @@ init.push(function () {
             }]
         });
 
+
+    });
+
+    // Graph répartition du budget pour les 4 meilleures catégories
+    $.getJSON($('#area').data('url'), function (data) {
+
+        // récupération des données JSON
+        var series = [];
+
+        $.each(data, function (key, val) {
+
+            var array = $.map(val, function(n){
+                    return n;
+            });
+
+            var obj = {name: key, data: array};
+            series.push(obj);
+        });
+        //console.log(series);
+
+
+        // Construction du graphique Highcharts
+        $('#area').highcharts({
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc']
+            },
+            yAxis: {
+                title: {
+                    text: 'Budget'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value / 1000 + 'k';
+                    }
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}  <b>{point.y:,.0f}</b><br/>en {point.x}'
+            },
+            //plotOptions: {
+            //    area: {
+            //        pointStart: 1940,
+            //        marker: {
+            //            enabled: false,
+            //            symbol: 'circle',
+            //            radius: 2,
+            //            states: {
+            //                hover: {
+            //                    enabled: true
+            //                }
+            //            }
+            //        }
+            //    }
+            //},
+            series: series
+        });
 
     });
 

@@ -25,6 +25,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Import implicite
     Route::controller('api', 'ApiController');
 
+    Route::post('message-create', ['uses' => 'DashboardController@createmessage', 'as' => 'messages.create']);
+
+    Route::post('/handle-favoris', ['uses' => 'MoviesController@favoris', 'as' => 'movies.favoris']);
 
     # HOME
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
