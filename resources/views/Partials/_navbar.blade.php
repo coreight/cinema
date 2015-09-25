@@ -71,6 +71,41 @@
                 <li><a href="{{ route('comments.index') }}"><i class="menu-icon fa fa-search"></i> Voir</a></li>
             </ul>
         </li>
+
+        <!--NOTIFICATIONS -->
+        <li class="nav-icon-btn nav-icon-btn-danger dropdown">
+            <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="label">{{ \App\Model\Notifications::count()  }}</span>
+                <i class="nav-icon fa fa-bullhorn"></i>
+                <span class="small-screen-text">Notifications</span>
+            </a>
+
+            <div class="dropdown-menu widget-notifications no-padding pull-right" style="width: 300px">
+                <div class="notifications-list" id="main-navbar-notifications">
+
+                    @forelse(\App\Model\Notifications::orderBy('created_at', 'desc')->take(10)->get() as $notification)
+
+                        <div class="notification">
+                            <div class="notification-title text-{{ $notification->criticity }}">{{ strtoupper($notification->criticity) }}</div>
+                            <div class="notification-description">{{ $notification->message }} .</div>
+                            <div class="notification-ago">
+                                {{ \Carbon\Carbon::createFromTimestamp(strtotime($notification->created_at))->diffForHumans() }}
+
+                            </div>
+                            <div class="notification-icon fa fa-exclamation-triangle bg-{{ $notification->criticity }}"></div>
+                        </div> <!-- / .notification -->
+                    @empty
+                        <span class="notifications-link">AUCUNE NOTIFICATION</span>
+
+                    @endforelse
+
+                </div> <!-- / .notifications-list -->
+                <a href="#" class="notifications-link">EFFACER LES NOTIFICATIONS</a>
+            </div> <!-- / .dropdown-menu -->
+        </li>
+
+
+        <!-- MESSAGES -->
         <li class="nav-icon-btn nav-icon-btn-success dropdown">
             <a href="#messages" class="dropdown-toggle" data-toggle="dropdown">
                 <span class="label" id="favCounter" data-count="{{ count(session("moviesFavoris")) }}">
@@ -79,7 +114,6 @@
                 <i class="nav-icon fa fa-star"></i>
                 <span class="small-screen-text">Films en favoris</span>
             </a>
-            <!-- MESSAGES -->
             <div class="dropdown-menu pull-right  widget-messages-alt no-padding" style="width: 300px;">
                 <div class="messages-list" id="main-navbar-messages"   data-url="{{ route('movies.ajax') }}">
 

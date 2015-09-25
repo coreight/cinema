@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Model\Categories;
 use App\Model\Notifications;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class CategoryCheck extends Command
 {
@@ -13,14 +14,14 @@ class CategoryCheck extends Command
      *
      * @var string
      */
-    protected $signature = 'category:check';
+    protected $signature = 'category:check {confirm=false}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Affiche des notifications pour les catégories sans aucun film.';
 
     /**
      * Create a new command instance.
@@ -39,21 +40,36 @@ class CategoryCheck extends Command
      */
     public function handle()
     {
+        $confirm = $this->argument('confirm');
+
+        // Vérification des catégories sans film
         $categories = Categories::all();
 
-        foreach ($categories as $categorie) {
-            if ($categorie->movies->isEmpty()){
+//        if ( $confirm == "false" ) {
 
-                $notification = new Notifications();
-                $notification->categorie = $categorie->toArray();
-                $notification->message = "La catégorie $categorie->title est vide";
-                $notification->criticity = "warning";
-                $notification->save();
+//            if ($this->confirm('Voulez vous continuer ? [Y|N]')){
+                // Supprime les anciennes notifications
+            DB::connection('mongodb')->collection('notifications')->delete();
 
+                // Ajoute des notifications pour les catégories vides
+                foreach ($categories as $categorie) {
+                    if ($categorie->movies->isEmpty()) {
 
+                        $notification = new Notifications();
+                        $notification->categorie = $categorie->toArray();
+                        $notification->message = "La catégorie $categorie->title est vide";
+                        $notification->criticity = "warning";
+                        $notification->save();
+                    }
+//                }
+//            }
 
-            }
         }
 
+
+
+
+
     }
+
 }
