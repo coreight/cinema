@@ -59,7 +59,7 @@
                         @foreach ($commentsByCinemas as $commentsByCinema)
 
                             {{--{{dump($commentsByCinema)}}--}}
-                            <cine title="{{ $commentsByCinema->title }}" nb="{{ $commentsByCinema->nb }}"">
+                            <cine title="{{ $commentsByCinema->title }}" nb="{{ $commentsByCinema->nb }}">
 
                                 {{-- On génère les éléments pour les films de chaque cinéma --}}
                                 <?php
@@ -126,9 +126,8 @@
                 <div class="panel-body tab-content-padding">
                     <div class="panel-padding no-padding-vr">
 
-
-
-
+                        <div id="basicBar" data-url="{{ url('admin/api/budget-by-categories') }}" class="graph" style="position: relative;">
+                        </div>
                     </div>
                 </div>
             </div>

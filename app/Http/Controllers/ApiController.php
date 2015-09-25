@@ -99,7 +99,7 @@ class ApiController extends Controller
         $bestCategories = array_slice($category->moviesByCategories(),0, 4);
 
         foreach ($bestCategories as $bestCategorie) {
-            $budgetsByCategorie =  $category->budgetsByCategorie($bestCategorie->id);
+            $budgetsByCategorie =  $category->budgetsByCategorie($bestCategorie->id)->get();
 
             // Initialisation d'un tableau vide formaté
             for ($i = 1; $i <= 12; $i++) {
@@ -112,9 +112,50 @@ class ApiController extends Controller
             }
 
         }
-
         return $data;
 
+    }
+
+    public function getBudgetByCategories()
+    {
+        $category = new Categories();
+
+        //Récupération de la liste complète des catégories
+        $allCategories = $category->categories();
+
+        $data2000 = $data2010 = $data2015 = $categories = [];
+
+        foreach ($allCategories as $allCategory) {
+
+            array_push($categories, $allCategory->title);
+
+            $budgets2000ByCategorie = Categories::interval('>=', "2000", '<', '2010')->budgetsByCategorie($allCategory->id)->get();
+            $budgets2010ByCategorie = Categories::interval('>=', '2010', '<', '2015')->budgetsByCategorie($allCategory->id)->get()->toArray();
+            $budgets2015ByCategorie = Categories::interval('>=', "2015", '<', '2020')->budgetsByCategorie($allCategory->id)->get()->toArray();
+
+            // Enregistrement de tous les budgets dans un tableau simple pour le traitement en graphique
+            if (count($budgets2000ByCategorie) == 0) {
+                $d2000 = 0;
+            } else {
+                $d2000 = intval($budgets2000ByCategorie[0]["budget"]);
+            }
+            array_push($data2000, $d2000);
+
+            if (count($budgets2010ByCategorie) == 0) {
+                $d2010 = 0;
+            } else {
+                $d2010 = intval($budgets2010ByCategorie[0]["budget"]);
+            }
+            array_push($data2010, $d2010);
+
+            if (count($budgets2015ByCategorie) == 0) {
+                $d2015 = 0;
+            } else {
+                $d2015 = intval($budgets2015ByCategorie[0]["budget"]);
+            }
+            array_push($data2015, $d2015);
+        }
+        return [$data2000, $data2010, $data2015, $categories];
     }
 
 

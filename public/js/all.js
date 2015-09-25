@@ -142,7 +142,7 @@ $(document).ready(function() {
         var elt = $(this);
 
         if ($(this).is(':checked')) {
-            console.log('checked');
+            //console.log('checked');
 
             $.ajax({
 
@@ -150,8 +150,13 @@ $(document).ready(function() {
                 method: "POST",
                 data: {id: elt.data('id'), action: "add", _token: elt.data('token')}
 
-            }).done(function(){
+            }).done(function(data){
+
                 console.log(elt.data('id')+" en favoris");
+                var count = parseInt($('#favCounter').text());
+                count++;
+                $('#favCounter').text(count);
+
             });
 
         } else {
@@ -163,12 +168,84 @@ $(document).ready(function() {
                 method: "POST",
                 data: {id: elt.data('id'), action: "remove", _token: elt.data('token')}
 
-            }).done(function(){
+            }).done(function(data){
+
                 console.log(elt.data('id')+" plus en favoris");
+                var count = parseInt($('#favCounter').text());
+                count--;
+                $('#favCounter').text(count);
+
             });
         }
 
-    })
+        // Mise à jour de la boite de notification en navbar
+        $.ajax({
+            // Récupération de la route utile au contrôleur
+            url: $('#main-navbar-messages').attr('data-url'),
+
+        }).done(function(data) {
+
+            // Rafraichissement du bloc avec les nouvelles données
+            $('#main-navbar-messages').hide().html(data).fadeIn('fast');
+
+            //var count = parseInt($('#favCounter').attr('data-count'));
+            //count = count +1;
+            //
+            //$('#favCounter').text(count);
+            //
+
+
+
+        });
+
+
+    });
+
+    // Système de likes
+    $(".like").click(function(e) {
+
+        // On stocke l'élément courant pour pouvoir le réutiliser ensuite
+        var elt = $(this);
+
+        $.ajax({
+
+            url: elt.data('url'),
+            method: "POST",
+            data: {id: elt.data('id'), action: elt.data('action'), _token: elt.data('token')}
+
+        }).done(function(data){
+
+            console.log(elt.data('id')+" liké");
+            var count = parseInt(elt.next().text());
+            count++;
+            elt.next().text(count);
+
+        });
+
+
+
+
+    });
+
+
+
+
+
+    /* Modification du  texte des commentaire directement dans le HTML */
+    $('.bs-x-editable-comment').editable({
+        title: 'Modifier le commentaire',
+        url: $(this).data('url'),
+        params: function(params) {
+            //originally params contain pk, name and value
+            params._token = $(this).data('token');
+            return params;
+        },
+        success: function(data,config) {
+            console.log('editable ok');
+        }
+
+    });
+
 
 
 
@@ -667,7 +744,7 @@ init.push(function () {
     //});
 
 
-    // Graph répartition des films par catégorie, via JSON
+    // Graph répartition des films par catégorie, via JSON et Highcharts
     $.getJSON($('#pie3D').data('url'), function (data) {
 
         // récupération des données JSON
@@ -715,7 +792,7 @@ init.push(function () {
 
 
 
-    // Graph répartition des films par catégorie, via JSON
+    // Graph répartition des films par catégorie, via JSON et Highcharts
     $.getJSON($('#stackedBar').data('url'), function (data) {
 
         //console.log('json ready');
@@ -855,6 +932,7 @@ init.push(function () {
     // Graph répartition du budget pour les 4 meilleures catégories
     $.getJSON($('#area').data('url'), function (data) {
 
+
         // récupération des données JSON
         var series = [];
 
@@ -913,6 +991,78 @@ init.push(function () {
         });
 
     });
+
+
+    // Graph répartition du budget par catégorie par intervalle de temps
+    $.getJSON($('#basicBar').data('url'), function (data) {
+
+
+        // récupération des données JSON
+        var series = [
+            {name: "Années 2000-2010", data: data[0]},
+            {name: "Années 2010-2015", data: data[1]},
+            {name: "Années 2015-2020", data: data[2]}
+        ];
+
+        var categories = data[3];
+
+       // Construction du graphique Highcharts
+
+        $('#basicBar').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: categories,
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Budget (€)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: series
+        });
+
+    });
+
 
 });
 

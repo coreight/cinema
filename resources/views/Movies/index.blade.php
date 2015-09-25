@@ -189,7 +189,12 @@
                                         data-token="{{ csrf_token() }}"
                                         data-id="{{  $movie->id }}"
                                         data-url="{{  route("movies.favoris") }}"
-                                        type="checkbox" data-class="switcher-warning" class="fav" checked="checked">&nbsp;&nbsp;
+                                        type="checkbox" data-class="switcher-warning" class="fav"
+                                        @if(in_array($movie->id, session('moviesFavoris', [])))
+                                            checked
+                                        @endif
+
+                                        >&nbsp;&nbsp;
                             </div>
                         </td>
                         <td>

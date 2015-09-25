@@ -2,7 +2,7 @@
 
         Main navigation
     -->
-<div id="main-navbar" class="navbar navbar-inverse" role="navigation">
+<div id="main-navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Main menu toggle -->
     <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
 
@@ -12,7 +12,6 @@
 
         <!-- Logo -->
     <a href="/admin" class="navbar-brand">
-    <div><img alt="Pixel Admin" src="/images/pixel-admin/main-navbar-logo.png"></div>
     CineApp
     </a>
 
@@ -60,7 +59,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="menu-icon fa fa-users"></i> Utilisateurs</a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="menu-icon fa fa-users"></i> Users</a>
             <ul class="dropdown-menu">
                 <li><a href="{{ route('users.index') }}"><i class="menu-icon fa fa-search"></i> Voir</a></li>
                 <li><a href="{{ route('users.create') }}"><i class="menu-icon fa fa-pencil"></i> Créer</a></li>
@@ -71,6 +70,25 @@
             <ul class="dropdown-menu">
                 <li><a href="{{ route('comments.index') }}"><i class="menu-icon fa fa-search"></i> Voir</a></li>
             </ul>
+        </li>
+        <li class="nav-icon-btn nav-icon-btn-success dropdown">
+            <a href="#messages" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="label" id="favCounter" data-count="{{ count(session("moviesFavoris")) }}">
+                    {{ count(session("moviesFavoris")) }}
+                </span>
+                <i class="nav-icon fa fa-star"></i>
+                <span class="small-screen-text">Films en favoris</span>
+            </a>
+            <!-- MESSAGES -->
+            <div class="dropdown-menu pull-right  widget-messages-alt no-padding" style="width: 300px;">
+                <div class="messages-list" id="main-navbar-messages"   data-url="{{ route('movies.ajax') }}">
+
+            @include('Movies.ajax')
+
+                </div> <!-- / .messages-list -->
+                <a href="{{ route('movies.flushFavoris') }}" class="messages-link">EFFACER LES FAVORIS</a>
+            </div> <!-- / .dropdown-menu -->
+
         </li>
         <div class="nav navbar-nav pull-right right-navbar-nav">
             <li class="dropdown">

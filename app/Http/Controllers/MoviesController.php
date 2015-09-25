@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 
+
 /**
  * Class MoviesController
  * @package App\Http\Controllers
@@ -342,6 +343,7 @@ class MoviesController extends Controller
      */
     public function invisible($id)
     {
+
         foreach($id as $idMovie) {
             DB::table('movies')->where('id', $idMovie)->update(['visible' => 0]);
            }
@@ -377,7 +379,79 @@ class MoviesController extends Controller
 
     public function favoris(Request $request)
     {
-        dump($request->input('id'),$request->input('action'));
+        $id = $request->input('id');
+        $action = $request->input('action');
+        // Récupération en session de l'item "favoris"
+        $liked = session("moviesFavoris", []);
+
+        if ($action == "add") {
+
+            // Enregistrement en variable de l'id souhaité
+            $liked[] = $id;
+            // Stockage de cette variable de la session
+            Session::put("moviesFavoris", $liked);
+
+
+        } else {
+
+            // On cherche la position de l'id dans le tableau
+            $position = array_search($id, $liked);
+            // On supprime l'élément grâce à sa position
+            unset($liked[$position]);
+
+            // Stockage de cette variable de la session
+            Session::put("moviesFavoris", $liked);
+        }
+
+//        (dump(session("moviesFavoris")));
+        return view('/Movies/ajax');
+
+
+    }
+
+    /**
+     * Vide les favoris des films en sessions
+     * @param Request $request
+     * @return mixed
+     */
+    public function flushFavoris(Request $request)
+    {
+        $request->session()->forget('moviesFavoris');
+        return Redirect::route('movies.index');
+
+    }
+
+    /**
+     * Fonction de like des films, enregistré en session
+     * @param Request $request
+     */
+    public function like(Request $request)
+    {
+        $id = $request->input('id');
+        $action = $request->input('action');
+
+        // Récupération en session de l'item "like"
+        $like = session("moviesLike", []);
+
+        if ($action == "like") {
+            // Enregistrement en variable de l'id souhaité
+            $like[] = $id;
+
+            // Stockage de cette variable de la session
+            Session::put("moviesLike", $like);
+
+        }
+
+        (dump(session("moviesLike")));
+
+
+    }
+
+
+    public function ajax()
+    {
+        return view('/Movies/ajax');
+
     }
 
 

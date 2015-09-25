@@ -53,15 +53,26 @@ class Categories extends Model
     /**
      * Retourne les budgets par mois de la catégorie passée en paramètre
      */
-    public function budgetsByCategorie($category)
+    public function scopeBudgetsByCategorie($query, $category)
     {
-        return DB::table('movies')
+        return $query
+            ->from('movies')
             ->select(DB::raw('SUM(budget) AS budget'),
                 DB::raw('DATE_FORMAT( date_release,  "%M" ) AS mois'),
                 DB::raw('DATE_FORMAT( date_release,  "%m" ) AS numMois'))
             ->where('categories_id', '=', $category)
-            ->groupBy('mois')
-            ->get();
+            ->groupBy('mois');
+    }
+
+    /**
+     *
+     * @param $query
+     * @param $interval
+     */
+    public function scopeInterval($query, $sign1, $interval1, $sign2, $interval2)
+    {
+        return $query->where(DB::raw('DATE_FORMAT(date_release, "%Y")'), $sign1, $interval1)
+                    ->where(DB::raw('DATE_FORMAT(date_release, "%Y")'), $sign2, $interval2);
     }
 
 

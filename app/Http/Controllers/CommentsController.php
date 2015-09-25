@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\Comments;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+
 
 
 /**
@@ -49,12 +52,19 @@ class CommentsController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     *
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        return view('Comments/update', ['id' => $id]);
+        $field = 'content';
 
+        $id = $request->id;
+        $value = $request->value;
+
+        $comment = Comments::find($id);
+        $comment->update([$field => $value]);
+//        Session::flash('success', "Le commentaire a bien été mis à jour");
+//        return Redirect::route('comments.index');
     }
 
     /**
@@ -72,4 +82,36 @@ class CommentsController extends Controller
     {
         return view('Comments/search');
     }
+
+    public function favoris(Request $request)
+    {
+        $id = $request->input('id');
+        $action = $request->input('action');
+        // Récupération en session de l'item "favoris"
+        $liked = session("commentsFavoris", []);
+
+        if ($action == "add") {
+
+            // Enregistrement en variable de l'id souhaité
+            $liked[] = $id;
+            // Stockage de cette variable de la session
+            Session::put("commentsFavoris", $liked);
+
+
+        } else {
+
+            // On cherche la position de l'id dans le tableau
+            $position = array_search($id, $liked);
+            // On supprime l'élément grâce à sa position
+            unset($liked[$position]);
+
+            // Stockage de cette variable de la session
+            Session::put("commentsFavoris", $liked);
+        }
+
+        (dump(session("commentsFavoris")));
+
+    }
+
+
 }

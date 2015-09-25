@@ -27,7 +27,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     Route::post('message-create', ['uses' => 'DashboardController@createmessage', 'as' => 'messages.create']);
 
-    Route::post('/handle-favoris', ['uses' => 'MoviesController@favoris', 'as' => 'movies.favoris']);
+    // Systèmes de favoris et likes
+    Route::post('/movies-favoris', ['uses' => 'MoviesController@favoris', 'as' => 'movies.favoris']);
+    Route::post('/comments-favoris', ['uses' => 'CommentsController@favoris', 'as' => 'comments.favoris']);
+    Route::post('/movies-like', ['uses' => 'MoviesController@like', 'as' => 'movies.like']);
+
 
     # HOME
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
@@ -89,6 +93,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('search/{lang?}/{visibility?}/{length?}', ['uses' => 'MoviesController@search',
             'as' => 'movies.search'])
             ->where(['lang' => 'fr|en|es', 'visibility' => '[0-1]', 'length' => '[1-9]{1,2}']);
+        Route::get('/', ['uses' => 'MoviesController@ajax', 'as' => 'movies.ajax']);
+        Route::get('/flushFavoris', ['uses' => 'MoviesController@flushFavoris', 'as' => 'movies.flushFavoris']);
+
     });
 
 
@@ -131,8 +138,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     # COMMENTAIRES
     Route::group(['prefix' => 'comments'], function () {
-        Route::get('/index', ['uses' => 'CommentsController@index',
-            'as' => 'comments.index']);
+        Route::get('/index', ['uses' => 'CommentsController@index','as' => 'comments.index']);
+        Route::post('{id}/update', ['uses' => 'CommentsController@update','as' => 'comments.update']);
+
     });
 
     # SESSIONS
